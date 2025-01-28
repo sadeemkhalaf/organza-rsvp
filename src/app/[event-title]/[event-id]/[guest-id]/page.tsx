@@ -1,9 +1,8 @@
+import TemplateRenderer from '@/features/EventTemplate/components/TemplateRenderer';
+import { Guest } from '@/types/event';
 import { useEffect, useState } from 'react';
-import { useSearchParams } from 'next/navigation'; // For query params
-import TemplateRenderer from '@/components/TemplateRenderer';
-import RSVPForm from '@/components/RSVPForm';
-import { fetchEventDetails } from '@/utils/api';
-import { Event, Guest } from '@/types';
+import RSVPForm from './rsvp';
+
 
 const EventGuestPage = ({ params }: { params: { eventId: string; guestId: string } }) => {
   const { eventId, guestId } = params;
@@ -13,18 +12,18 @@ const EventGuestPage = ({ params }: { params: { eventId: string; guestId: string
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    (async () => {
-      try {
-        setLoading(true);
-        const { event, guest } = await fetchEventDetails(eventId, guestId);
-        setEventDetails(event);
-        setGuestDetails(guest);
-      } catch (error) {
-        console.error('Failed to fetch event or guest details:', error);
-      } finally {
-        setLoading(false);
-      }
-    })();
+    // (async () => {
+    //   try {
+    //     setLoading(true);
+    //     const { event, guest } = await fetchEventDetails(eventId, guestId);
+    //     setEventDetails(event);
+    //     setGuestDetails(guest);
+    //   } catch (error) {
+    //     console.error('Failed to fetch event or guest details:', error);
+    //   } finally {
+    //     setLoading(false);
+    //   }
+    // })();
   }, [eventId, guestId]);
 
   if (loading) return <p>Loading...</p>;
