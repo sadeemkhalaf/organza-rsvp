@@ -48,7 +48,7 @@ const HeroHue = () => {
 
   return (
     <div
-      className="relative h-screen flex flex-col items-center justify-center overflow-hidden cursor-none transition-colors duration-500"
+      className="relative h-screen overflow-x-hidden md:overflow-visible flex flex-col items-center justify-center cursor-none transition-colors duration-500 -mt-32"
       style={{
         backgroundColor:
           hoveredWordIndex !== null
@@ -112,7 +112,7 @@ const HeroHue = () => {
           stiffness: 100,
           damping: 20,
         }}
-        className="rounded-full absolute top-[60%] left-1/2 transform -translate-x-1/2"
+        className="rounded-full absolute top-[70%] md:top-[60%] left-1/2 transform -translate-x-1/2"
       ></motion.div>
     </div>
   );
