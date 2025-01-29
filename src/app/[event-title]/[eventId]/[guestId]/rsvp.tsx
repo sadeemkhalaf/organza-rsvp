@@ -32,7 +32,7 @@ const RSVPForm: React.FC<RSVPFormProps> = ({ guestId, eventId }) => {
       // Redirect to thank-you or success page
       router.push(`/${eventId}/${guestId}/thank-you`);
     } catch (err) {
-      setError('Failed to submit RSVP. Please try again.');
+      setError(`Failed to submit RSVP. Please try again. ${err}`);
     } finally {
       setLoading(false);
     }
