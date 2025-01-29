@@ -33,12 +33,13 @@ export default function RootLayout({
           <Navbar />
 
           {/* Main Content */}
-          <main className="flex-grow">{children}</main>
+          <main className="flex-grow pt-20 bg-gradient-to-br from-[#FFE5D9] via-[#E6E6FA] to-[#F5DEB3]">
+            {children}
+          </main>
 
           {/* Footer */}
           <Footer />
         </div>
-
       </body>
     </html>
   );

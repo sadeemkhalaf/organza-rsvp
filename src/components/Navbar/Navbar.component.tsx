@@ -1,41 +1,47 @@
-import Link from 'next/link';
-import Image from 'next/image';
+"use client";
+
+import Link from "next/link";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 const Navbar = () => {
-  return (
-    <header className="bg-white shadow-md">
-      <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-        {/* Logo */}
-        <div className="flex items-center">
-          <Link href="/">
-            <Image
-              src="/path-to-logo.png" // Path to your logo image
-              alt="Organza Logo"
-              width={120} // Adjust the width
-              height={40} // Adjust the height
-              priority // Ensures the logo loads quickly
-            />
-          </Link>
-        </div>
+  const [isScrolled, setIsScrolled] = useState(false);
 
-        {/* Navigation Links */}
-        <nav className="flex space-x-6">
-          <Link href="/" className="text-gray-600 hover:text-gray-800">
-            Home
-          </Link>
-          <Link href="/about" className="text-gray-600 hover:text-gray-800">
-            About us
-          </Link>
-          <Link href="/dashboard" className="text-gray-600 hover:text-gray-800">
-            Dashboard
-          </Link>
-          <Link href="/profile" className="text-gray-600 hover:text-gray-800">
-            Profile
-          </Link>
-          <button className="text-gray-600 hover:text-gray-800">Logout</button>
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <motion.header
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 0.75, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        isScrolled ? "bg-white/80 backdrop-blur-md shadow-md" : "bg-transparent"
+      }`}
+    >
+      <div className="container mx-auto flex justify-between items-center py-4 px-6">
+        <Link href="/">
+          <Image src={'/Logo.png'} className="h-16 w-auto" alt="organza" width={78} height={70} />
+        </Link>
+        <nav className="space-x-6 hidden md:flex">
+          <Link href="/about">About us</Link>
+          <Link href="/dashboard">Dashboard</Link>
+          <Link href="/profile">Profile</Link>
         </nav>
+        <button className="border rounded-full px-4 py-2">Logout</button>
       </div>
-    </header>
+    </motion.header>
   );
 };
 

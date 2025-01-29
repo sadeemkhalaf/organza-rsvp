@@ -9,6 +9,7 @@ const HeroHue = () => {
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const [hoveredWordIndex, setHoveredWordIndex] = useState<number | null>(null);
   const [circleSize, setCircleSize] = useState(600); // Initial circle size (in pixels)
+  const [circleOpacity, setCircleOpacity] = useState(1); // Initial circle size (in pixels)
 
   // Track mouse position
   useEffect(() => {
@@ -30,7 +31,9 @@ const HeroHue = () => {
 
       // Calculate the new circle size (min 200px, max 600px)
       const newSize = Math.max(200, 600 - (scrollY / maxScroll) * 400); // Shrinks from 600px to 200px
+      const opacityValue = Math.max(0, 1 - (scrollY / maxScroll));
       setCircleSize(newSize);
+      setCircleOpacity(opacityValue);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -40,7 +43,7 @@ const HeroHue = () => {
   }, []);
 
   // Hue colors for each word
-  const backgroundColors = ["#FFB5A750", "#E6E6FA50", "#48D1CC50"];
+  const backgroundColors = ["#FFB5A760", "#E6E6FA60", "#48D1CC60"];
   const backgroundColorsNoOpacity = ["#FFB5A7", "#E9E3D0", "#48D1CC"];
 
   return (
@@ -50,7 +53,7 @@ const HeroHue = () => {
         backgroundColor:
           hoveredWordIndex !== null
             ? backgroundColors[hoveredWordIndex]
-            : "white", // Default background color
+            : "transparent", // Default background color
       }}
     >
       {/* Custom Cursor */}
@@ -102,6 +105,7 @@ const HeroHue = () => {
         animate={{
           width: circleSize, // Dynamic width
           height: circleSize, // Dynamic height
+          opacity: circleOpacity,
         }}
         transition={{
           type: "spring",
