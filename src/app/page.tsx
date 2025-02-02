@@ -1,13 +1,13 @@
 "use client";
 
-import { HeroHue } from "@/components";
+import { Hero } from "@/components";
 import { motion } from "framer-motion";
 
 export default function Home() {
   return (
     <div>
       {/* HELLO! */}
-      <HeroHue />
+      <Hero />
       <div className="h-screen flex justify-center w-full items-center">
         <div
           className="relative opacity-100"
