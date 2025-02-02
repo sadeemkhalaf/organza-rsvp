@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { AnimatedButton } from "../atoms";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -39,7 +40,7 @@ const Navbar = () => {
           <Link href="/dashboard">Dashboard</Link>
           <Link href="/profile">Profile</Link>
         </nav>
-        <button className="border rounded-full px-4 py-2">Logout</button>
+        <AnimatedButton outlined title="Logout" size="sm" />
       </div>
     </motion.header>
   );

@@ -24,7 +24,7 @@ export default {
       },
       fontFamily: {
         // Define the fonts used in your design
-        sans: ['Inter', 'sans-serif'], // Primary font
+        sans: ['Montserrat', 'Inter', 'sans-serif'], // Primary font
         serif: ['Playfair Display', 'serif'], // Serif font for titles
       },
       spacing: {

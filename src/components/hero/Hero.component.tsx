@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { AnimatedButton } from "../atoms";
+import HeroFeatures from "./HeroFeatures.component";
 
 const words = ["Bring Your Loved Ones", "Closer,", "Instantly."];
 
@@ -77,11 +79,11 @@ const Hero = () => {
       ></motion.div>
 
       {/* HeroHue Section */}
-      <div className="relative z-10 text-center text-white w-2/3 flex-wrap text-wrap flex-col">
+      <div className="relative z-10 text-center text-white md:w-2/3 flex-wrap text-wrap flex-col">
         {words.map((word, index) => (
           <span
             key={index}
-            className="text-6xl font-bold mx-2"
+            className="text-5xl md:text-6xl font-bold md:mx-2"
             onMouseEnter={() => setHoveredWordIndex(index)}
             onMouseLeave={() => setHoveredWordIndex(null)}
             style={{
@@ -93,10 +95,10 @@ const Hero = () => {
           </span>
         ))}
       </div>
-        <span className="z-10 mt-7 text-xl font-normal text-wrap">
-          Celebrate your special moments with seamless digital invitations—just
-          one click away.
-        </span>
+      <span className="z-10 mt-7 text-md md:text-xl font-normal text-wrap text-center px-6">
+        Celebrate your special moments with seamless digital invitations—just
+        one click away.
+      </span>
 
       {/* Circle Element */}
       <motion.div
@@ -118,6 +120,12 @@ const Hero = () => {
         }}
         className="rounded-full absolute top-[30%] md:top-[25%] left-1/2 transform -translate-x-1/2"
       ></motion.div>
+
+      <div className="mt-10">
+        <AnimatedButton title="JOIN NOW" outlined={false} backgroundColor={'#000000'} textColor={'white'} />
+      </div>
+
+      <HeroFeatures />
     </div>
   );
 };
