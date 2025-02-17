@@ -18,8 +18,8 @@ const AnimatedButton: FC<AnimatedButtonProps> = ({
 }) => {
     // Define size styles
     const sizeClasses = size === 'sm' 
-      ? 'px-4 py-2 text-sm'  // Small button styles
-      : 'px-6 py-3 text-lg'; // Large button styles
+      ? 'px-4 py-2 text-xs md:text-sm'  // Small button styles
+      : 'px-6 py-3 text-sm md:text-lg'; // Large button styles
 
     return (
         <div className="relative">

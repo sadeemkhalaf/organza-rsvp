@@ -38,7 +38,7 @@ export default function RootLayout({
           <Navbar />
 
           {/* Main Content */}
-          <main className="flex-grow pt-20 bg-gradient-to-br from-[#FFE5D9] via-[#E6E6FA] to-[#F5DEB3]">
+          <main className="flex-grow pt-20 bg-gradient-to-br from-[#FFE5D9] via-[#E6E6FA] to-[#F5DEB3] -mb-20">
             {children}
           </main>
 

@@ -29,4 +29,45 @@ export interface Guest {
     guests: Guest[]; // List of guests
     couple?: string; // Couple's name, for weddings and anniversaries and engagements
   }
+
+  export interface IEvent {
+    id: string;
+    attributes: {
+      title: string;
+      date: string;
+      story?: string;
+      coverImage?: string;
+      invitedBy: string;
+      formTitle?: string;
+      formDescription?: string;
+      paid?: boolean;
+      guestsLimit?: number;
+      locationDescription?: string;
+      createdAt: string;
+      updatedAt: string;
+      publishedAt?: string;
+      eventId: string;
+      account?: { data: { id: number; attributes: IAccount } };
+    };
+  }
+
+  export interface IAccount {
+    id: string;
+    attributes: {
+      name: string;
+      email: string;
+      profilePicture?: string;
+      createdAt: string;
+      updatedAt: string;
+      role: "admin" | "event-planner" | "guest"; // Adjust roles as needed
+      subscription?: {
+        plan: string;
+        status: "active" | "expired" | "canceled";
+        renewalDate?: string;
+      };
+      events?: { data: IEvent[] }; // List of events the account owns
+    };
+  }
+  
+  
   
