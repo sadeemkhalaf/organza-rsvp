@@ -29,7 +29,7 @@ export default function EventCard({ event, isEmpty }: EventCardProps) {
   return (
     <div
       className="m-4 flex flex-col w-full max-w-sm bg-white border border-gray-200 rounded-lg p-4 cursor-pointer hover:shadow-md transition-all duration-300"
-      onClick={() => router.push(`/dashboard/event-details/${event?.id}`)}
+      onClick={() => router.push(`/dashboard/event/${event?.id}`)}
     >
       <div
         className="relative rounded-md bg-cover bg-center h-[120px]"

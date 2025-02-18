@@ -1,45 +1,40 @@
-import { MongoClient, Db } from 'mongodb';
+import mongoose from "mongoose";
 
-interface DatabaseConnection {
-  client: MongoClient;
-  db: Db;
+const MONGODB_URI = process.env.MONGODB_CONNECTION_STRING || "";
+
+if (!MONGODB_URI) {
+  throw new Error(
+    "Please define the MONGODB_URI environment variable inside .env.local"
+  );
 }
 
-let cachedConnection: DatabaseConnection | null = null;
+let cached = global.mongoose;
 
-export async function connectToDatabase(): Promise<DatabaseConnection> {
-  if (cachedConnection) {
-    // Use cached connection if available
-    return cachedConnection;
+if (!cached) {
+  cached = global.mongoose = { conn: null, promise: null };
+}
+
+async function dbConnect() {
+  if (cached.conn) {
+    return cached.conn;
   }
-
+  if (!cached.promise) {
+    const opts = {
+      bufferCommands: false,
+    };
+    cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
+      console.log("Db connected, yay!");
+      return mongoose;
+    });
+  }
   try {
-    // MongoDB connection string from your environment variables
-    const MONGODB_URI = process.env.MONGODB_URI as string;
-    const MONGODB_DB = process.env.MONGODB_DB as string;
-
-    if (!MONGODB_URI) {
-      throw new Error('Please define the MONGODB_URI environment variable');
-    }
-
-    if (!MONGODB_DB) {
-      throw new Error('Please define the MONGODB_DB environment variable');
-    }
-
-    // Create a new MongoClient instance
-    const client = new MongoClient(MONGODB_URI);
-
-    // Connect to the database
-    await client.connect();
-
-    const db = client.db(MONGODB_DB);
-
-    // Cache the connection
-    cachedConnection = { client, db };
-
-    return cachedConnection;
-  } catch (error) {
-    console.error('Failed to connect to the database:', error);
-    throw error;
+    cached.conn = await cached.promise;
+  } catch (e) {
+    cached.promise = null;
+    throw e;
   }
+
+  return cached.conn;
 }
+
+export default dbConnect;
