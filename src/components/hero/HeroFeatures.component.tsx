@@ -7,8 +7,8 @@ interface FeatureCardProps {
 
 const FeatureCard: React.FC<FeatureCardProps> = ({ image, text }) => {
   return (
-    <div className="flex flex-col justify-center items-center w-1/2 md:w-1/4 p-3q md:px-6 h-full ">
-      <img src={image} alt={text} className="h-6 md:h-11 w-auto" />
+    <div className="flex flex-col justify-center items-center w-1/2 md:w-1/4 p-3q md:px-6 h-full">
+      <img src={image} alt={text} className="h-4 md:h-11 w-auto mt-4 md:mt-0" />
       <p className="text-sm md:text-md font-bold mt-2 text-center">{text}</p>
     </div>
   );
