@@ -9,4 +9,4 @@ const NewEventPage: React.FC = () => {
     );
 };
 
-export default NewEventPage; 
+export default NewEventPage;     
