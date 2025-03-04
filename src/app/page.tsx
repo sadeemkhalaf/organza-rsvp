@@ -16,7 +16,7 @@ export default function Home() {
         }
       `}</style>
       <Hero />
-      <div className="w-full h-28 " />
+      <div className="w-full h-28" />
       <div className="h-screen flex flex-col justify-center w-full items-center">
         <div className="justify-between w-2/3 hidden md:flex md:visible">
           <div className="w-1/3 mx-3 mt-12 transition-transform duration-500 ease-in-out transform hover:translate-y-5">

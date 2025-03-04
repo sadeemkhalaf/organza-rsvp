@@ -50,7 +50,7 @@ const Hero = () => {
 
   return (
     <div
-      className="relative h-screen overflow-x-hidden md:overflow-visible flex flex-col items-center justify-center cursor-none transition-colors duration-500 -mt-32"
+      className="relative min-h-screen overflow-x-hidden flex flex-col items-center justify-center cursor-none transition-colors duration-500 -mt-32"
       style={{
         backgroundColor:
           hoveredWordIndex !== null
