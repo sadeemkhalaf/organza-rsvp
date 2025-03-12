@@ -1,13 +1,13 @@
 'use client';
 
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Header } from '@/components/organizms';
 import { useLoginForm } from '@/hooks';
 import { AnimatedButton, FormExtra, Input } from '@/components';
 
 function Login() {
+  const { handleChange, handleSubmit, errorMessage, loginState, fields, onSubmit, register, errors } = useLoginForm();
 
-  const { handleChange, handleSubmit, errorMessage, loginState, fields } = useLoginForm();
 
   return (
     <div className="h-screen max-h-screen w-full relative overflow-hidden justify-center items-center flex" >
@@ -19,29 +19,32 @@ function Login() {
             linkName="Signup"
             linkUrl="/auth/register"
           />
-            <form className="mt-8 space-y-6 min-w-[300px] w-full" onSubmit={handleSubmit}>
+          <form className="mt-8 space-y-6 min-w-[300px] w-full" onSubmit={handleSubmit(onSubmit)}>
             <div className="-space-y-px">
               {
-              fields.map(field =>
-                <Input
-                key={field.id}
-                handleChange={handleChange}
-                value={loginState[field.id]}
-                labelText={field.labelText}
-                labelFor={field.labelFor}
-                id={field.id}
-                name={field.name}
-                type={field.type}
-                isRequired={field.isRequired}
-                placeholder={field.placeholder}
-                />
-              )
+                fields.map(field =>
+                  <Fragment key={field.id}>
+                    <Input
+                      {...register(field.name)}
+                      handleChange={handleChange}
+                      value={loginState[field.id]}
+                      labelText={field.labelText}
+                      labelFor={field.labelFor}
+                      id={field.id}
+                      name={field.name}
+                      type={field.type}
+                      isRequired={field.isRequired}
+                      placeholder={field.placeholder}
+                    />
+                    {errors[field.name] && <p className="error">{errors[field.name].message}</p>}
+                  </Fragment>
+                )
               }
             </div>
             <FormExtra />
             {!!errorMessage?.length && <div className='text-red-400 text-xs'>{errorMessage}</div>}
             <AnimatedButton onClick={handleSubmit} title="Login" invalid={errorMessage?.length > 0} size='lg' containerClassName="w-full" />
-            </form>
+          </form>
         </div>
       </div>
     </div>

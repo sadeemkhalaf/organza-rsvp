@@ -1,10 +1,26 @@
 import { useEffect, useMemo, useState } from 'react';
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const useLoginForm = () => {
+
+    const loginSchema = z.object({
+        email: z.string().email("Invalid email format"),
+        password: z.string().min(6, "Password must be at least 6 characters long"),
+    });
 
     const [errorMessage, setErrorMessage] = useState<string>('');
     const [fieldsState, setFieldsState] = useState<{ [key: string]: string }>({});
     const [loginState, setLoginState] = useState(fieldsState);
+    type LoginFormData = z.infer<typeof loginSchema>;
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+      } = useForm<LoginFormData>({ resolver: zodResolver(loginSchema) });
+
 
     const fields = useMemo(() => [
         {
@@ -41,10 +57,15 @@ const useLoginForm = () => {
         setLoginState({ ...loginState, [e.target.id]: e.target.value })
     }
 
-    const handleSubmit = (e: any) => {
+    const handleSubmitForm = (e: any) => {
         e.preventDefault();
         // authenticateUser();
     }
+
+    const onSubmit = async (data: LoginFormData) => {
+        console.log("Valid Data:", data);
+        // Make API call to register
+      };
 
     return {
         fields,
@@ -53,6 +74,10 @@ const useLoginForm = () => {
         errorMessage,
         setErrorMessage,
         loginState,
+        handleSubmitForm,
+        onSubmit,
+        register,
+        errors
     };
 };
 
