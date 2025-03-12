@@ -35,11 +35,11 @@ const Dashboard: React.FC<DashboardProps> = ({ events }) => {
       </div>
 
       {/* Event Cards Grid */}
-      <div className="flex flex-wrap">
-        {events.map((event) => (
-          <EventCard key={event.id} event={event} />
+      <div className="flex flex-wrap flex-1">
+        {([{ id: 'empty' }, ...events] as IEvent[]).map((event) => (
+          event.id !== 'empty' ? <EventCard key={event.id} event={event} /> : <EventCard isEmpty key={event.id} />
         ))}
-        <EventCard isEmpty /> {/* Placeholder for creating a new event */}
+        {/* Placeholder for creating a new event */}
       </div>
     </div>
   );
