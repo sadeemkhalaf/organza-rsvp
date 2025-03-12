@@ -19,6 +19,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const isLoginPage = typeof window !== 'undefined' && window.location.pathname.includes('login');
+
   return (
     <html lang="en">
       <body
@@ -26,7 +28,7 @@ export default function RootLayout({
       >
         <div className="flex flex-col min-h-screen">
           {/* Top Navbar */}
-          <Navbar />
+          {isLoginPage && <Navbar />}
 
           {/* Main Content */}
           <main className="flex-grow pt-20 bg-gradient-to-br from-[#FFE5D9] via-[#E6E6FA] to-[#F5DEB3] -mb-20">
@@ -34,7 +36,7 @@ export default function RootLayout({
           </main>
 
           {/* Footer */}
-          <Footer />
+          {isLoginPage && <Footer />}
         </div>
       </body>
     </html>
