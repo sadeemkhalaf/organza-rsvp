@@ -1,8 +1,9 @@
 import React from 'react'
+import { Login } from '@/views';
 
 function LoginPage() {
   return (
-    <div>LoginPage</div>
+    <Login />
   )
 }
 
