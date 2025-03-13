@@ -16,10 +16,15 @@ const useLoginForm = () => {
     type LoginFormData = z.infer<typeof loginSchema>;
 
     const {
-        register,
+        control,
         handleSubmit,
         formState: { errors },
-      } = useForm<LoginFormData>({ resolver: zodResolver(loginSchema) });
+    } = useForm<LoginFormData>({
+        resolver: zodResolver(loginSchema), defaultValues: {
+            email: "", // Ensures inputs start as controlled
+            password: "",
+        },
+    });
 
 
     const fields = useMemo(() => [
@@ -65,7 +70,7 @@ const useLoginForm = () => {
     const onSubmit = async (data: LoginFormData) => {
         console.log("Valid Data:", data);
         // Make API call to register
-      };
+    };
 
     return {
         fields,
@@ -76,7 +81,7 @@ const useLoginForm = () => {
         loginState,
         handleSubmitForm,
         onSubmit,
-        register,
+        control,
         errors
     };
 };

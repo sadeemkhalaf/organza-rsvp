@@ -4,9 +4,10 @@ import React, { Fragment } from 'react'
 import { Header } from '@/components/organizms';
 import { useLoginForm } from '@/hooks';
 import { AnimatedButton, FormExtra, Input } from '@/components';
+import { Controller } from 'react-hook-form';
 
 function Login() {
-  const { handleChange, handleSubmit, errorMessage, loginState, fields, onSubmit, register, errors } = useLoginForm();
+  const { handleSubmit, errorMessage, fields, onSubmit, control, errors } = useLoginForm();
 
 
   return (
@@ -22,28 +23,32 @@ function Login() {
           <form className="mt-8 space-y-6 min-w-[300px] w-full" onSubmit={handleSubmit(onSubmit)}>
             <div className="-space-y-px">
               {
-                fields.map(field =>
-                  <Fragment key={field.id}>
-                    <Input
-                      {...register(field.name)}
-                      handleChange={handleChange}
-                      value={loginState[field.id]}
-                      labelText={field.labelText}
-                      labelFor={field.labelFor}
-                      id={field.id}
-                      name={field.name}
-                      type={field.type}
-                      isRequired={field.isRequired}
-                      placeholder={field.placeholder}
+                fields.map(mappedField =>
+                  <Fragment key={mappedField.id}>
+                    <Controller
+                      name={mappedField.name as "email" | "password"}
+                      control={control}
+                      render={({ field }) => (
+                        <Input
+                          handleChange={field.onChange}
+                          {...field}
+                          value={field.value ?? ""} // Ensure the value is always a string
+                          labelText={mappedField.labelText}
+                          labelFor={mappedField.labelFor}
+                          type={mappedField.type}
+                          isRequired={mappedField.isRequired}
+                          placeholder={mappedField.placeholder}
+                        />
+                      )}
                     />
-                    {errors[field.name] && <p className="error">{errors[field.name].message}</p>}
+                    {errors[mappedField.name] && <p className="error">{errors[mappedField.name].message}</p>}
                   </Fragment>
                 )
               }
             </div>
             <FormExtra />
             {!!errorMessage?.length && <div className='text-red-400 text-xs'>{errorMessage}</div>}
-            <AnimatedButton onClick={handleSubmit} title="Login" invalid={errorMessage?.length > 0} size='lg' containerClassName="w-full" />
+            <AnimatedButton onClick={handleSubmit} title="Login" invalid={errorMessage?.length > 0} size='lg' containerClassName="w-full mt-2" />
           </form>
         </div>
       </div>

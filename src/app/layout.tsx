@@ -19,7 +19,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const isLoginPage = typeof window !== 'undefined' && window.location.pathname.includes('login');
+  const isAuthStack = typeof window !== 'undefined' && window.location.pathname.includes('login');
 
   return (
     <html lang="en">
@@ -28,15 +28,15 @@ export default function RootLayout({
       >
         <div className="flex flex-col min-h-screen">
           {/* Top Navbar */}
-          {isLoginPage && <Navbar />}
+          {!isAuthStack && <Navbar />}
 
           {/* Main Content */}
-          <main className="flex-grow pt-20 bg-gradient-to-br from-[#FFE5D9] via-[#E6E6FA] to-[#F5DEB3] -mb-20">
+          <main className={`${!isAuthStack ? 'pt-20 -mb-20 flex-grow' : 'pt-0'} bg-gradient-to-br from-[#FFE5D9] via-[#E6E6FA] to-[#F5DEB3] `}>
             {children}
           </main>
 
           {/* Footer */}
-          {isLoginPage && <Footer />}
+          {!isAuthStack && <Footer />}
         </div>
       </body>
     </html>

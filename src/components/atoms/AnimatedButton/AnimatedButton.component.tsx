@@ -28,7 +28,7 @@ const AnimatedButton: FC<AnimatedButtonProps> = ({
         : 'px-6 py-3 text-sm md:text-lg'; // Large button styles
 
     return (
-        <div className="relative">
+        <div className="relative cursor-pointer">
             <motion.a
                 onClick={onClick}
                 style={{

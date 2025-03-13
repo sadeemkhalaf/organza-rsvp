@@ -7,7 +7,7 @@ export default function Layout({
   children: React.ReactNode;
 }>) {
   return (
-    <main className="flex-grow flex flex-col h-screen w-screen">
+    <main className="flex w-screen">
       {children}
     </main>
   );

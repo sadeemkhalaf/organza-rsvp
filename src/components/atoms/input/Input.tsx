@@ -5,7 +5,6 @@ interface InputProps {
   value: string;
   labelText: string;
   labelFor: string;
-  id: string;
   name: string;
   type: string;
   isRequired?: boolean;
@@ -18,7 +17,6 @@ export default function Input({
   value,
   labelText,
   labelFor,
-  id,
   name,
   type,
   isRequired = false,
@@ -33,7 +31,6 @@ export default function Input({
       <input
         onChange={handleChange}
         value={value}
-        id={id}
         name={name}
         type={type}
         required={isRequired}
