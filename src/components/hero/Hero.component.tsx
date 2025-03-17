@@ -3,14 +3,14 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { AnimatedButton } from "../atoms";
-import HeroFeatures from "./HeroFeatures.component";
 
 const words = ["Bring Your Loved Ones", "Closer,", "Instantly."];
+const window_height = (typeof window !== "undefined") ? window.screen.height / 1.5 : 600;
 
 const Hero = () => {
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const [hoveredWordIndex, setHoveredWordIndex] = useState<number | null>(null);
-  const [circleSize, setCircleSize] = useState(900); // Initial circle size (in pixels)
+  const [circleSize, setCircleSize] = useState(window_height); // Initial circle size (in pixels)
   const [circleOpacity, setCircleOpacity] = useState(1); // Initial circle size (in pixels)
 
   // Track mouse position
@@ -32,7 +32,7 @@ const Hero = () => {
       const scrollY = window.scrollY; // Current scroll position
 
       // Calculate the new circle size (min 200px, max 600px)
-      const newSize = Math.max(200, 900 - (scrollY / maxScroll) * 400); // Shrinks from 600px to 200px
+      const newSize = Math.max(200, window_height/1.5 - (scrollY / maxScroll) * 400); // Shrinks from 600px to 200px
       const opacityValue = Math.max(0, 1 - scrollY / maxScroll);
       setCircleSize(newSize);
       setCircleOpacity(opacityValue);
@@ -50,7 +50,7 @@ const Hero = () => {
 
   return (
     <div
-      className="relative h-screen overflow-x-hidden md:overflow-visible flex flex-col items-center justify-center cursor-none transition-colors duration-500 -mt-32"
+      className={`relative w-full flex-grow h-screen overflow-x-hidden flex flex-col items-center justify-center cursor-none transition-colors duration-500 -mt-32 z-0`}
       style={{
         backgroundColor:
           hoveredWordIndex !== null
@@ -124,8 +124,6 @@ const Hero = () => {
       <div className="mt-10">
         <AnimatedButton title="JOIN NOW" outlined={false} backgroundColor={'#000000'} textColor={'white'} />
       </div>
-
-      <HeroFeatures />
     </div>
   );
 };

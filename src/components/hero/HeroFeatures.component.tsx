@@ -8,8 +8,8 @@ interface FeatureCardProps {
 const FeatureCard: React.FC<FeatureCardProps> = ({ image, text }) => {
   return (
     <div className="flex flex-col justify-center items-center w-1/2 md:w-1/4 p-3q md:px-6 h-full">
-      <img src={image} alt={text} className="h-4 md:h-11 w-auto mt-4 md:mt-0" />
-      <p className="text-sm md:text-md font-bold mt-2 text-center">{text}</p>
+      <img src={image} alt={text} className="h-4 md:h-7 lg:h-11 w-auto mt-4 lg:mt-0" />
+      <p className="text-xs lg:text-xs font-bold mt-2 text-center">{text}</p>
     </div>
   );
 };
@@ -23,7 +23,7 @@ const features: FeatureCardProps[] = [
 
 const HeroFeatures: React.FC = () => {
   return (
-    <div className="bg-white flex flex-wrap md:flex-row w-3/4 md:w-2/3 h-auto py-4 md:py-11 rounded-xl absolute -bottom-20 items-baseline z-10 shadow-lg">
+    <div className="bg-white flex flex-wrap md:flex-row w-3/4 md:w-2/3 h-auto py-4 md:py-7 rounded-xl absolute -bottom-20 items-baseline z-10 shadow-lg">
       {features.map((feature, index) => (
         <FeatureCard key={index} image={feature.image} text={feature.text} />
       ))}
