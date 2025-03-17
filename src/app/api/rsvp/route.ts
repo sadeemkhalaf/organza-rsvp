@@ -13,7 +13,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       // const success = await updateGuestRSVP(eventId, guestId, status);
 
       // if (!success) {
-        // return res.status(500).json({ error: 'Failed to update RSVP' });
+      //   return res.status(500).json({ error: 'Failed to update RSVP' });
       // }
 
       return res.status(200).json({ success: true });

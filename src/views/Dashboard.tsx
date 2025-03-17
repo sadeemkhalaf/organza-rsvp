@@ -9,7 +9,7 @@ interface DashboardProps {
 const Dashboard: React.FC<DashboardProps> = ({ events }) => {
   return (
     <div className="w-full max-w-6xl mx-auto p-6 mb-6">
-      <div className="w-full flex items-start flex-col md:flex-row justify-between mb-6 flex-1 px-2 md:px-4">
+      <div className="w-full flex items-start flex-col sm:flex-row justify-between mb-6 flex-1 px-2 md:px-4">
         <div>
           <h1 className="text-3xl font-bold text-gray-800 mb-2">Your Events</h1>
           <p className="text-gray-500 mb-6">
@@ -35,11 +35,11 @@ const Dashboard: React.FC<DashboardProps> = ({ events }) => {
       </div>
 
       {/* Event Cards Grid */}
-      <div className="flex flex-wrap">
-        {events.map((event) => (
-          <EventCard key={event.id} event={event} />
+      <div className="flex flex-wrap flex-1">
+        {([{ id: 'empty' }, ...events] as IEvent[]).map((event) => (
+          event.id !== 'empty' ? <EventCard key={event.id} event={event} /> : <EventCard isEmpty key={event.id} />
         ))}
-        <EventCard isEmpty /> {/* Placeholder for creating a new event */}
+        {/* Placeholder for creating a new event */}
       </div>
     </div>
   );

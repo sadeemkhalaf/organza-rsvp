@@ -6,17 +6,11 @@ import { motion } from "framer-motion";
 export default function Home() {
   return (
     <div>
-      <style jsx>{`
-        .scroll-hidden::-webkit-scrollbar {
-          display: none;
-        }
-        .scroll-hidden {
-          -ms-overflow-style: none; /* IE and Edge */
-          scrollbar-width: none; /* Firefox */
-        }
-      `}</style>
       <Hero />
-      <div className="w-full h-28 " />
+      {/* <div className="w-full flex justify-center">
+        <HeroFeatures />
+      </div> */}
+      {/* <div className="w-full h-28" /> */}
       <div className="h-screen flex flex-col justify-center w-full items-center">
         <div className="justify-between w-2/3 hidden md:flex md:visible">
           <div className="w-1/3 mx-3 mt-12 transition-transform duration-500 ease-in-out transform hover:translate-y-5">
@@ -30,8 +24,13 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="w-full overflow-hidden overflow-x-scroll scroll-hidden md:hidden">
-          <div className="flex p-4 transition-transform duration-500 ease-in-out transform hover:translate-x-1/3">
+        <motion.div
+          className="w-full overflow-hidden overflow-x-scroll scroll-hidden md:hidden"
+        >
+          <motion.div
+            animate={{ x: ["0%", "-100%"] }}
+            transition={{ duration: 10, ease: "easeInOut", repeat: Infinity }}
+            className="flex p-4 transition-transform duration-500 ease-in-out transform hover:translate-x-1/3">
             <div className="w-2/3 md:w-1/3 mx-3 md:mt-12 flex-shrink-0">
               <img src="/landing/temp1.jpg" alt="image1" />
             </div>
@@ -41,8 +40,8 @@ export default function Home() {
             <div className="w-2/3 md:w-1/3 mx-3 md:mt-12 flex-shrink-0">
               <img src="/landing/temp3.jpg" alt="image3" />
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         <div className="w-full h-20" />
         {/* a div with all items centered in column */}
