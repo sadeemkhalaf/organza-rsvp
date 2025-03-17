@@ -15,7 +15,7 @@ export const loginUserWithFirebaseEmailPassword = async (email: string, password
             email: user.email,
             token: token,
         };
-    } catch (error: any) {
-        throw new Error(error.message);
+    } catch (error) {
+        throw new Error((error as any)?.message || 'An error occurred while logging in');
     }
 };
