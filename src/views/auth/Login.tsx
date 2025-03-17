@@ -49,7 +49,7 @@ function Login() {
           </form>
           {errorMessage && <div className="text-orange-400 text-xs">{errorMessage}</div>}
           <div className='w-full flex justify-center'>
-            <AnimatedButton loading={loading} onClick={handleSubmit(onSubmit)} title="Login" invalid={errorMessage?.length > 0} size='lg' containerClassName="flex w-full mt-2" />
+            <AnimatedButton widthFull loading={loading} onClick={handleSubmit(onSubmit)} title="Login" invalid={errorMessage?.length > 0} size='lg' containerClassName="flex w-full mt-2" />
           </div>
         </div>
       </div>

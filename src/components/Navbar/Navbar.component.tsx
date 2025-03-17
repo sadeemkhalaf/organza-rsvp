@@ -5,9 +5,11 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { AnimatedButton } from "../atoms";
+import { useRouter } from 'next/navigation';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const route = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,6 +23,11 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+    route.push("/login");
+  };
 
   return (
     <motion.header
@@ -40,7 +47,7 @@ const Navbar = () => {
           <Link href="/dashboard">Dashboard</Link>
           <Link href="/profile">Profile</Link>
         </nav>
-        <AnimatedButton outlined title="Logout" size="sm" />
+        <AnimatedButton outlined title="Logout" size="sm" onClick={handleLogout} />
       </div>
     </motion.header>
   );
