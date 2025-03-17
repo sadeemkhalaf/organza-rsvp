@@ -10,6 +10,7 @@ interface AnimatedButtonProps {
     onClick?: (props?: any) => void;
     invalid?: boolean;
     containerClassName?: string | undefined;
+    loading?: boolean;
 }
 
 const AnimatedButton: FC<AnimatedButtonProps> = ({
@@ -20,7 +21,8 @@ const AnimatedButton: FC<AnimatedButtonProps> = ({
     size = 'lg', // Default to large
     onClick = () => { },
     invalid = false,
-    containerClassName = undefined
+    containerClassName = undefined,
+    loading = false
 }) => {
     // Define size styles
     const sizeClasses = size === 'sm'
@@ -28,7 +30,7 @@ const AnimatedButton: FC<AnimatedButtonProps> = ({
         : 'px-6 py-3 text-sm md:text-lg'; // Large button styles
 
     return (
-        <div className="relative cursor-pointer">
+        <div className="relative cursor-pointer w-full">
             <motion.a
                 onClick={onClick}
                 style={{
@@ -41,7 +43,16 @@ const AnimatedButton: FC<AnimatedButtonProps> = ({
                 whileHover={{ scale: 1.05 }}
             >
                 {/* Button Text */}
-                <span className="relative z-10">{title}</span>
+                {loading ? (
+                    <span className="relative z-10">
+                        <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+                        </svg>
+                    </span>
+                ) : (
+                    <span className="relative z-10 flex justify-center w-full">{title}</span>
+                )}
 
                 {/* Ripple Effect */}
                 <motion.span

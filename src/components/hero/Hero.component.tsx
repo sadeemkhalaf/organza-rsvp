@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { AnimatedButton } from "../atoms";
 
 const words = ["Bring Your Loved Ones", "Closer,", "Instantly."];
-const window_height = window.screen.height/1.5;
+const window_height = (typeof window !== "undefined") ? window.screen.height / 1.5 : 600;
 
 const Hero = () => {
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });

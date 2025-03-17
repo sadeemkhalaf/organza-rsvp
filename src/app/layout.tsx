@@ -28,15 +28,15 @@ export default function RootLayout({
       >
         <div className="flex flex-col min-h-screen">
           {/* Top Navbar */}
-          {!isAuthStack && <Navbar />}
+          {isAuthStack && <Navbar />}
 
           {/* Main Content */}
-          <main className={`${!isAuthStack ? 'pt-20 -mb-20 flex-grow' : 'pt-0'} bg-gradient-to-br from-[#FFE5D9] via-[#E6E6FA] to-[#F5DEB3] `}>
+          <main className={`${isAuthStack ? 'pt-20 -mb-20 flex-grow' : 'pt-0'} bg-gradient-to-br from-[#FFE5D9] via-[#E6E6FA] to-[#F5DEB3] `}>
             {children}
           </main>
 
           {/* Footer */}
-          {!isAuthStack && <Footer />}
+          {isAuthStack && <Footer />}
         </div>
       </body>
     </html>

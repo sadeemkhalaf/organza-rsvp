@@ -7,12 +7,11 @@ import { AnimatedButton, FormExtra, Input } from '@/components';
 import { Controller } from 'react-hook-form';
 
 function Login() {
-  const { handleSubmit, errorMessage, fields, onSubmit, control, errors } = useLoginForm();
-
+  const { handleSubmit, errorMessage, fields, onSubmit, control, errors, loading } = useLoginForm();
 
   return (
     <div className="h-screen max-h-screen w-full relative overflow-hidden justify-center items-center flex" >
-      <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div className="flex min-h-full flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8">
           <Header
             heading="Login to your account"
@@ -20,7 +19,7 @@ function Login() {
             linkName="Signup"
             linkUrl="/auth/register"
           />
-          <form className="mt-8 space-y-6 min-w-[300px] w-full" onSubmit={handleSubmit(onSubmit)}>
+          <form className="relative mt-8 space-y-6 min-w-[300px] w-full" onSubmit={handleSubmit(onSubmit)}>
             <div className="-space-y-px">
               {
                 fields.map(mappedField =>
@@ -41,15 +40,17 @@ function Login() {
                         />
                       )}
                     />
-                    {errors[mappedField.name] && <p className="error">{errors[mappedField.name].message}</p>}
+                    {errors[mappedField.name] && <p className="text-orange-400 text-xs">{errors[mappedField.name]?.message}</p>}
                   </Fragment>
                 )
               }
             </div>
             <FormExtra />
-            {!!errorMessage?.length && <div className='text-red-400 text-xs'>{errorMessage}</div>}
-            <AnimatedButton onClick={handleSubmit} title="Login" invalid={errorMessage?.length > 0} size='lg' containerClassName="w-full mt-2" />
           </form>
+          {errorMessage && <div className="text-orange-400 text-xs">{errorMessage}</div>}
+          <div className='w-full flex justify-center'>
+            <AnimatedButton loading={loading} onClick={handleSubmit(onSubmit)} title="Login" invalid={errorMessage?.length > 0} size='lg' containerClassName="flex w-full mt-2" />
+          </div>
         </div>
       </div>
     </div>
