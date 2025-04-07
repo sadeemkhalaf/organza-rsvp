@@ -1,6 +1,7 @@
 import React from "react";
 import EventCard from "@/components/organizms/eventCard/EventCard.component";
 import { IEvent } from "@/types/event";
+import Link from "next/link";
 
 interface DashboardProps {
   events: IEvent[];
@@ -16,9 +17,9 @@ const Dashboard: React.FC<DashboardProps> = ({ events }) => {
             Manage, display and export all <br /> your invitations
           </p>
         </div>
-        <button className="bg-black text-white px-4 py-2 rounded-md shadow-sm hover:bg-gray-800">
+        <Link href="/new-event" className="bg-black text-white px-4 py-2 rounded-md shadow-sm hover:bg-gray-800">
           Create new event
-        </button>
+        </Link>
       </div>
 
       {/* Search & Filter Section */}

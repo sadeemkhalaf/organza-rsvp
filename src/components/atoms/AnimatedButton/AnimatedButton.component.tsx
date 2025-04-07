@@ -12,6 +12,7 @@ interface AnimatedButtonProps {
     containerClassName?: string | undefined;
     loading?: boolean;
     widthFull?: boolean;
+    disabled?: boolean;
 }
 
 const AnimatedButton: FC<AnimatedButtonProps> = ({
@@ -24,7 +25,8 @@ const AnimatedButton: FC<AnimatedButtonProps> = ({
     invalid = false,
     containerClassName = undefined,
     loading = false,
-    widthFull = false
+    widthFull = false,
+    disabled = false
 }) => {
     // Define size styles
     const sizeClasses = size === 'sm'
@@ -32,7 +34,7 @@ const AnimatedButton: FC<AnimatedButtonProps> = ({
         : 'px-6 py-3 text-sm md:text-lg'; // Large button styles
 
     return (
-        <div className={"relative cursor-pointer" + (widthFull ? " w-full" : "")}>
+        <div className={"relative cursor-pointer" + (widthFull ? " w-full" : "")} aria-disabled={disabled}>
             <motion.a
                 onClick={onClick}
                 style={{

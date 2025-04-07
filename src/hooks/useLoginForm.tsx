@@ -93,6 +93,7 @@ const useLoginForm = () => {
 
       const result = await response.json();
       localStorage.setItem("authToken", result.user.token);
+      localStorage.setItem("user", JSON.stringify(result.user));
       setLoading(false);
       router.push("/dashboard");
 
