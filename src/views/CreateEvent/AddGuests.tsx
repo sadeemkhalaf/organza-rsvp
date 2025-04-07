@@ -2,7 +2,7 @@ import { AnimatedButton } from "@/components";
 import { Check, Share, Mail, UserPlus, PlusCircle } from "lucide-react";
 import Link from "next/link";
 
-const StepIndicator = ({ step, total }: { step: number; total: number }) => {
+const StepIndicator = ({}: { step: number; total: number }) => {
   return (
     <div className="flex items-center gap-6 mb-6">
       <div className="flex items-center gap-2">
@@ -45,10 +45,16 @@ const AddGuests = () => {
 
             <div className="flex items-center gap-4">
               <Link href="/create-event/details">
-                <AnimatedButton title="Previous" containerClassName="border-gray-200" />
+                <AnimatedButton
+                  title="Previous"
+                  containerClassName="border-gray-200"
+                />
               </Link>
               <Link href="/dashboard">
-                <AnimatedButton title="Finish" containerClassName="bg-peach hover:bg-peach-dark text-white" />
+                <AnimatedButton
+                  title="Finish"
+                  containerClassName="bg-peach hover:bg-peach-dark text-white"
+                />
               </Link>
             </div>
           </div>
@@ -57,10 +63,8 @@ const AddGuests = () => {
             <h3 className="text-lg font-medium">Guest List</h3>
 
             <div className="flex gap-3">
-              <Button size="sm">
-                <UserPlus size={16} className="mr-2" />
-                Add new guest
-              </Button>
+              <AnimatedButton size="sm" title="Add new guest" />
+              <UserPlus size={16} className="mr-2" />
             </div>
           </div>
 
@@ -79,13 +83,13 @@ const AddGuests = () => {
                 />
               </div>
               <div>
-              <div>
-                <AnimatedButton
-                  title="Plus One"
-                  size="sm"
-                  containerClassName="text-gray-400 hover:text-gray-600"
-                />
-                 
+                <div>
+                  <AnimatedButton
+                    title="Plus One"
+                    size="sm"
+                    containerClassName="text-gray-400 hover:text-gray-600"
+                  />
+
                   <PlusCircle size={16} className="mr-2" />
                 </div>
               </div>

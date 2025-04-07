@@ -5,7 +5,7 @@ import Link from "next/link";
 import { AnimatedButton } from "@/components";
 import { eventTemplates } from "@/mock/data";
 
-const StepIndicator = ({ step, total }: { step: number; total: number }) => {
+const StepIndicator = ({}: { step: number; total: number }) => {
   return (
     <div className="flex items-center gap-6 mb-6">
       <div className="flex items-center gap-2">
