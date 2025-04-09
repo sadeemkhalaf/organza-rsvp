@@ -72,9 +72,15 @@ importers:
       eslint-config-next:
         specifier: 15.1.4
         version: 15.1.4(eslint@9.17.0(jiti@1.21.7))(typescript@5.7.3)
+      husky:
+        specifier: ^9.1.7
+        version: 9.1.7
       postcss:
         specifier: ^8
         version: 8.4.49
+      prettier:
+        specifier: ^3.5.3
+        version: 3.5.3
       tailwindcss:
         specifier: ^3.4.1
         version: 3.4.17
@@ -1295,6 +1301,11 @@ packages:
   http-parser-js@0.5.9:
     resolution: {integrity: sha512-n1XsPy3rXVxlqxVioEWdC+0+M+SQw0DpJynwtOPo1X+ZlvdzTLtDBIJJlDQTnwZIFJrZSzSGmIOUdP8tu+SgLw==}
 
+  husky@9.1.7:
+    resolution: {integrity: sha512-5gs5ytaNjBrh5Ow3zrvdUUY+0VxIuWVL4i9irt6friV+BqdCfmV11CQTWMiBYWHbXhco+J1kHfTOUkePhCDvMA==}
+    engines: {node: '>=18'}
+    hasBin: true
+
   idb@7.1.1:
     resolution: {integrity: sha512-gchesWBzyvGHRO9W8tzUWFDycow5gwjvFKfyV9FF32Y7F50yZMp7mP+T2mJIWFx49zicqyC4uefHM17o6xKIVQ==}
 
@@ -1873,6 +1884,11 @@ packages:
   prelude-ls@1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
+
+  prettier@3.5.3:
+    resolution: {integrity: sha512-QQtaxnoDJeAkDvDKWCLiwIXkTgRhwYDEQCghU9Z6q03iyek/rxRh/2lC3HB7P8sWT2xC/y5JDctPLBIGzHKbhw==}
+    engines: {node: '>=14'}
+    hasBin: true
 
   pretty-format@3.8.0:
     resolution: {integrity: sha512-WuxUnVtlWL1OfZFQFuqvnvs6MiAGk9UNsBostyBOB0Is9wb5uRESevA6rnl/rkksXaGX3GzZhPup5d6Vp1nFew==}
@@ -3773,6 +3789,8 @@ snapshots:
 
   http-parser-js@0.5.9: {}
 
+  husky@9.1.7: {}
+
   idb@7.1.1: {}
 
   ignore@5.3.2: {}
@@ -4320,6 +4338,8 @@ snapshots:
   preact@10.26.4: {}
 
   prelude-ls@1.2.1: {}
+
+  prettier@3.5.3: {}
 
   pretty-format@3.8.0: {}
 
