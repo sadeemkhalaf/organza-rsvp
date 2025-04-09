@@ -31,7 +31,7 @@ const HeroHue = () => {
 
       // Calculate the new circle size (min 200px, max 600px)
       const newSize = Math.max(200, 600 - (scrollY / maxScroll) * 400); // Shrinks from 600px to 200px
-      const opacityValue = Math.max(0, 1 - (scrollY / maxScroll));
+      const opacityValue = Math.max(0, 1 - scrollY / maxScroll);
       setCircleSize(newSize);
       setCircleOpacity(opacityValue);
     };

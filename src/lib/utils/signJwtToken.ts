@@ -15,7 +15,7 @@ export const signJwtToken = (payload: object, expiresIn: string = "7d") => {
 export const verifyJwtToken = (token: string) => {
   try {
     return jwt.verify(token, SECRET_KEY);
-} catch (error) {
+  } catch (error) {
     console.error("JWT verification error:", error);
     throw new Error("Invalid token");
     return null;

@@ -1,5 +1,5 @@
-import connect from '@/lib/db/connectToDatabase'
+import connect from "@/lib/db/connectToDatabase";
 
 export async function register() {
-    await connect()
+  await connect();
 }

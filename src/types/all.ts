@@ -1,4 +1,3 @@
-
 export interface EventTemplate {
   id: string;
   title: string;
@@ -12,7 +11,7 @@ export interface Guest {
   id: string;
   name: string;
   email: string;
-  status: 'pending' | 'confirmed' | 'declined';
+  status: "pending" | "confirmed" | "declined";
   notes?: string;
   plusOne?: boolean;
   plusOneName?: string;
@@ -32,7 +31,7 @@ export interface Event {
   templateId: string;
   formTitle?: string;
   formDescription?: string;
-  status: 'draft' | 'active' | 'completed';
+  status: "draft" | "active" | "completed";
   capacity?: number;
   guests: Guest[];
 }

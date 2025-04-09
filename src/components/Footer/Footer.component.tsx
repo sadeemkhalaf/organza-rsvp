@@ -54,9 +54,9 @@ const Footer = () => {
         </div>
       </div>
       {/* <div className="border-t-1 border-[black] py-8"> */}
-        <div className="mt-11 text-sm border-t border-gray-400 py-8 mx-16">
-          <span>© 2025 OrganzaRSVP. All rights reserved.</span>
-        </div>
+      <div className="mt-11 text-sm border-t border-gray-400 py-8 mx-16">
+        <span>© 2025 OrganzaRSVP. All rights reserved.</span>
+      </div>
       {/* </div> */}
     </footer>
   );

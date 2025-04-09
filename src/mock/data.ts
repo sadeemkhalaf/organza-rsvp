@@ -1,4 +1,3 @@
-
 import { Event, EventTemplate, Guest, User } from "@/types/all";
 
 export const eventTemplates: EventTemplate[] = [
@@ -88,7 +87,8 @@ export const sampleEvents: Event[] = [
     location: "Rosewood Gardens",
     locationUrl: "https://maps.google.com/?q=Rosewood+Gardens",
     description: "Join us for our wedding celebration!",
-    story: "We met five years ago at a coffee shop and have been inseparable ever since.",
+    story:
+      "We met five years ago at a coffee shop and have been inseparable ever since.",
     coverPhoto: "/lovable-uploads/47b65894-b5dd-4486-be24-eaa30bc39f88.png",
     mainPhoto: "/lovable-uploads/75a6f4a5-dd51-4f09-abdb-3c9e0b03cc4c.png",
     templateId: "template-1",
