@@ -1,10 +1,8 @@
-import React from 'react'
-import { Login } from '@/views';
+import React from "react";
+import { Login } from "@/views";
 
 function LoginPage() {
-  return (
-    <Login />
-  )
+  return <Login />;
 }
 
 export default LoginPage;

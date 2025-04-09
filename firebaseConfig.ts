@@ -11,7 +11,7 @@ const firebaseConfig = {
   storageBucket: "organza-rsvp.firebasestorage.app",
   messagingSenderId: "15793800560",
   appId: "1:15793800560:web:634875ad42df28618cbbb5",
-  measurementId: "G-WD39PEG3NZ"
+  measurementId: "G-WD39PEG3NZ",
 };
 
 // Initialize Firebase

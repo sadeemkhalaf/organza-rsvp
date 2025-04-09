@@ -45,10 +45,16 @@ const AddGuests = () => {
 
             <div className="flex items-center gap-4">
               <Link href="/create-event/details">
-                <AnimatedButton title="Previous" containerClassName="border-gray-200" />
+                <AnimatedButton
+                  title="Previous"
+                  containerClassName="border-gray-200"
+                />
               </Link>
               <Link href="/dashboard">
-                <AnimatedButton title="Finish" containerClassName="bg-peach hover:bg-peach-dark text-white" />
+                <AnimatedButton
+                  title="Finish"
+                  containerClassName="bg-peach hover:bg-peach-dark text-white"
+                />
               </Link>
             </div>
           </div>
@@ -79,13 +85,13 @@ const AddGuests = () => {
                 />
               </div>
               <div>
-              <div>
-                <AnimatedButton
-                  title="Plus One"
-                  size="sm"
-                  containerClassName="text-gray-400 hover:text-gray-600"
-                />
-                 
+                <div>
+                  <AnimatedButton
+                    title="Plus One"
+                    size="sm"
+                    containerClassName="text-gray-400 hover:text-gray-600"
+                  />
+
                   <PlusCircle size={16} className="mr-2" />
                 </div>
               </div>

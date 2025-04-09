@@ -23,7 +23,10 @@ export default NextAuth({
         if (!user) throw new Error("User not found");
 
         if (!credentials?.password) throw new Error("Password is required");
-        const isValid = await bcrypt.compare(credentials.password, user.password);
+        const isValid = await bcrypt.compare(
+          credentials.password,
+          user.password,
+        );
         if (!isValid) throw new Error("Invalid credentials");
 
         return { id: user._id.toString(), email: user.email, name: user.name };
@@ -51,6 +54,6 @@ export default NextAuth({
   pages: {
     signIn: "/auth/signin",
     signOut: "/auth/signout",
-    error: "/auth/error", 
+    error: "/auth/error",
   },
 });

@@ -17,7 +17,10 @@ const Dashboard: React.FC<DashboardProps> = ({ events }) => {
             Manage, display and export all <br /> your invitations
           </p>
         </div>
-        <Link href="/new-event" className="bg-black text-white px-4 py-2 rounded-md shadow-sm hover:bg-gray-800">
+        <Link
+          href="/new-event"
+          className="bg-black text-white px-4 py-2 rounded-md shadow-sm hover:bg-gray-800"
+        >
           Create new event
         </Link>
       </div>
@@ -37,9 +40,13 @@ const Dashboard: React.FC<DashboardProps> = ({ events }) => {
 
       {/* Event Cards Grid */}
       <div className="flex flex-wrap flex-1">
-        {([{ id: 'empty' }, ...events] as IEvent[]).map((event) => (
-          event.id !== 'empty' ? <EventCard key={event.id} event={event} /> : <EventCard isEmpty key={event.id} />
-        ))}
+        {([{ id: "empty" }, ...events] as IEvent[]).map((event) =>
+          event.id !== "empty" ? (
+            <EventCard key={event.id} event={event} />
+          ) : (
+            <EventCard isEmpty key={event.id} />
+          ),
+        )}
         {/* Placeholder for creating a new event */}
       </div>
     </div>

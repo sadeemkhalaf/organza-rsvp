@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface FeatureCardProps {
   image?: string;
@@ -8,17 +8,24 @@ interface FeatureCardProps {
 const FeatureCard: React.FC<FeatureCardProps> = ({ image, text }) => {
   return (
     <div className="flex flex-col justify-center items-center w-1/2 md:w-1/4 p-3q md:px-6 h-full">
-      <img src={image} alt={text} className="h-4 md:h-7 lg:h-11 w-auto mt-4 lg:mt-0" />
+      <img
+        src={image}
+        alt={text}
+        className="h-4 md:h-7 lg:h-11 w-auto mt-4 lg:mt-0"
+      />
       <p className="text-xs lg:text-xs font-bold mt-2 text-center">{text}</p>
     </div>
   );
 };
 
 const features: FeatureCardProps[] = [
-  { image: '/icons/check.png', text: 'Track your guests status' },
-  { image: '/icons/heart.png', text: 'Allow your guests to express' },
-  { image: '/icons/customize.png', text: 'Create your personalized invitation' },
-  { image: '/icons/letter.png', text: 'Share within seconds' },
+  { image: "/icons/check.png", text: "Track your guests status" },
+  { image: "/icons/heart.png", text: "Allow your guests to express" },
+  {
+    image: "/icons/customize.png",
+    text: "Create your personalized invitation",
+  },
+  { image: "/icons/letter.png", text: "Share within seconds" },
 ];
 
 const HeroFeatures: React.FC = () => {

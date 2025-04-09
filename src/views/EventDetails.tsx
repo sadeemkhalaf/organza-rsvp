@@ -28,7 +28,10 @@ const EventDetails: React.FC<EventDetailsProps> = ({ event }) => {
 
       {/* Event Stats */}
       <div className="flex flex-wrap md:justify-between bg-white shadow-md rounded-lg p-6 mb-6">
-        <StatBox title="Total Invited" value={event.attributes.guestsLimit || 10} />
+        <StatBox
+          title="Total Invited"
+          value={event.attributes.guestsLimit || 10}
+        />
         <StatBox title="Pending" value={60} color="#FFD700" /> {/* Yellow */}
         <StatBox title="Accepted" value={28} color="#32CD32" /> {/* Green */}
         <StatBox title="Declined" value={12} color="#FF4500" /> {/* Red */}
@@ -37,7 +40,9 @@ const EventDetails: React.FC<EventDetailsProps> = ({ event }) => {
       {/* Event Description */}
       <div className="bg-white shadow-md rounded-lg p-6 mb-6">
         <h2 className="text-xl font-semibold">Event Details</h2>
-        <p className="text-gray-600 mt-2">{event.attributes.story || 'this is a place for event description'}</p>
+        <p className="text-gray-600 mt-2">
+          {event.attributes.story || "this is a place for event description"}
+        </p>
       </div>
 
       {/* Guest List */}
