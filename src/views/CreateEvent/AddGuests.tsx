@@ -2,7 +2,7 @@ import { AnimatedButton } from "@/components";
 import { Check, Share, Mail, UserPlus, PlusCircle } from "lucide-react";
 import Link from "next/link";
 
-const StepIndicator = ({ step, total }: { step: number; total: number }) => {
+const StepIndicator = ({}: { step: number; total: number }) => {
   return (
     <div className="flex items-center gap-6 mb-6">
       <div className="flex items-center gap-2">
@@ -63,10 +63,8 @@ const AddGuests = () => {
             <h3 className="text-lg font-medium">Guest List</h3>
 
             <div className="flex gap-3">
-              <Button size="sm">
-                <UserPlus size={16} className="mr-2" />
-                Add new guest
-              </Button>
+              <AnimatedButton size="sm" title="Add new guest" />
+              <UserPlus size={16} className="mr-2" />
             </div>
           </div>
 

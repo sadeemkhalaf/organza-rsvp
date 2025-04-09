@@ -2,7 +2,7 @@ import { AnimatedButton } from "@/components";
 import { Check, Share, Mail, Image } from "lucide-react";
 import Link from "next/link";
 
-const StepIndicator = ({ step, total }: { step: number; total: number }) => {
+const StepIndicator = ({}: { step: number; total: number }) => {
   return (
     <div className="flex items-center gap-6 mb-6">
       <div className="flex items-center gap-2">
