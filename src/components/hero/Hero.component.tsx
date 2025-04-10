@@ -8,7 +8,7 @@ import { FeatureCard } from "../organizms";
 
 const words = ["Bring Your Loved Ones", "Closer,", "Instantly."];
 const window_height =
-  typeof window !== "undefined" ? window.screen.height / 1.5 : 600;
+  typeof window !== "undefined" ? window.screen.height / 2 : 200;
 
 const Hero = () => {
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
