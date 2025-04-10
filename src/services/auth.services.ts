@@ -6,7 +6,11 @@ import { signJwtToken } from "@/lib/utils/signJwtToken";
 /**
  * Register a new user
  */
-export const registerUser = async (name: string, email: string, password: string) => {
+export const registerUser = async (
+  name: string,
+  email: string,
+  password: string,
+) => {
   await dbConnect();
 
   const existingUser = await User.findOne({ email });

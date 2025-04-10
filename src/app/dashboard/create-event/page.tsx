@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 function CreateNewEventPage() {
-  return (
-    <div>CreateNewEventPage</div>
-  )
+  return <div>CreateNewEventPage</div>;
 }
 
 export default CreateNewEventPage;

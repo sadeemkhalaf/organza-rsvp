@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { AnimatedButton } from "../atoms";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -40,14 +40,25 @@ const Navbar = () => {
     >
       <div className="container mx-auto flex justify-between items-center py-4 px-6">
         <Link href="/">
-          <Image src={'/Logo.png'} className="h-16 w-auto" alt="organza" width={78} height={70} />
+          <Image
+            src={"/Logo.png"}
+            className="h-16 w-auto"
+            alt="organza"
+            width={78}
+            height={70}
+          />
         </Link>
         <nav className="space-x-6 hidden md:flex">
           <Link href="/about">About us</Link>
           <Link href="/dashboard">Dashboard</Link>
           <Link href="/profile">Profile</Link>
         </nav>
-        <AnimatedButton outlined title="Logout" size="sm" onClick={handleLogout} />
+        <AnimatedButton
+          outlined
+          title="Logout"
+          size="sm"
+          onClick={handleLogout}
+        />
       </div>
     </motion.header>
   );

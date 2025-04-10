@@ -3,18 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev --turbopack --port=2030",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "jest",
+    "format": "prettier --write .",
+    "analyze": "next build --analyze",
+    "type-check": "tsc --noEmit",
+    "prepare": "husky"
   },
   "dependencies": {
     "@hookform/resolvers": "^4.1.3",
-    "@next-auth/mongodb-adapter": "^1.1.3",
     "bcryptjs": "^3.0.2",
     "firebase": "^11.4.0",
     "framer-motion": "^12.0.6",
     "jsonwebtoken": "^9.0.2",
+    "lucide-react": "^0.487.0",
     "mongodb": "^6.12.0",
     "mongoose": "^8.10.1",
     "next": "15.1.4",
@@ -32,7 +37,9 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.1.4",
+    "husky": "^9.1.7",
     "postcss": "^8",
+    "prettier": "^3.5.3",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   }

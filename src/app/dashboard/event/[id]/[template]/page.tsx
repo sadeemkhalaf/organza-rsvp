@@ -1,10 +1,8 @@
-import React from 'react'
+import React from "react";
 
 // a page to render the template of an event
 function EventTemplatePage() {
-  return (
-    <div>EventTemplatePage</div>
-  )
+  return <div>EventTemplatePage</div>;
 }
 
-export default EventTemplatePage
+export default EventTemplatePage;

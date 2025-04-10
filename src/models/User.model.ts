@@ -1,12 +1,12 @@
 import mongoose, { Schema, Document } from "mongoose";
 
 export enum UserPersmission {
-    user = "user",
-    admin = "admin",
-    event_manager = "event-manager",
-    anonymous = "anonymous",
-    all_loggedin_users = "all-loggedin-users"
-} 
+  user = "user",
+  admin = "admin",
+  event_manager = "event-manager",
+  anonymous = "anonymous",
+  all_loggedin_users = "all-loggedin-users",
+}
 
 export interface IUser extends Document {
   name: string;
@@ -72,7 +72,8 @@ const UserSchema = new Schema<IUser>(
       },
     ],
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
-export default mongoose.models.User || mongoose.model<IUser>("User", UserSchema);
+export default mongoose.models.User ||
+  mongoose.model<IUser>("User", UserSchema);
