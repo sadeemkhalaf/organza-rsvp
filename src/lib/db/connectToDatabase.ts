@@ -6,7 +6,7 @@ const MONGODB_URI = process.env.MONGODB_URI || "";
 
 if (!MONGODB_URI) {
   console.warn(
-    "⚠️ Warning: MONGODB_URI is not defined. Database will not connect."
+    "⚠️ Warning: MONGODB_URI is not defined. Database will not connect.",
   );
 }
 
@@ -54,5 +54,3 @@ export default async function dbConnect() {
   console.log("dbConnect called, but not implemented yet.");
   return null;
 }
-
-
