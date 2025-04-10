@@ -21,7 +21,7 @@ async function dbConnect() {
   if (!cached.promise) {
     const opts = {
       bufferCommands: false,
-      dbName: process.env.DB_NAME,
+      dbName: process.env.DB_NAME || "organza",
       useNewUrlParser: true,
       useUnifiedTopology: true,
     };
