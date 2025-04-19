@@ -45,7 +45,7 @@ const Navbar = () => {
         <nav className="space-x-6 hidden md:flex">
           <Link href="/about">About us</Link>
           <Link href="/dashboard">Dashboard</Link>
-          <Link href="/profile">Profile</Link>
+          <Link href="/dashboard/profile">Profile</Link>
         </nav>
         <div className="grid md:grid-cols-2 md:items-center md:space-x-4">
           {localStorage.getItem('user') && (
