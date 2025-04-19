@@ -1,115 +1,112 @@
-import { useState } from "react";
-import { Check, Share, Mail, Search } from "lucide-react";
-import Link from "next/link";
-import { AnimatedButton } from "@/components";
-import { eventTemplates } from "@/mock/data";
+'use client';
+import { FC, Fragment, useState } from 'react';
+import { AnimatedButton } from '@/components';
+import { eventTemplates } from '@/mock/data';
+import { SearchBar, TemplateCard } from './components';
 
-const StepIndicator = ({}: { step: number; total: number }) => {
-  return (
-    <div className="flex items-center gap-6 mb-6">
-      <div className="flex items-center gap-2">
-        <div className="w-8 h-8 rounded-full bg-peach flex items-center justify-center">
-          <Check size={16} className="text-white" />
-        </div>
-        <div className="w-8 h-8 rounded-full bg-peach flex items-center justify-center">
-          <Share size={16} className="text-white" />
-        </div>
-        <div className="w-8 h-8 rounded-full bg-peach flex items-center justify-center">
-          <Mail size={16} className="text-white" />
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const SelectTemplate = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedTemplate, setSelectedTemplate] = useState<string | null>(null);
-
+// Step 1: Template selection
+const StepOne: FC<{
+  selectedTemplate: string | null;
+  setSelectedTemplate: React.Dispatch<React.SetStateAction<string | null>>;
+}> = ({ selectedTemplate, setSelectedTemplate }) => {
+  const [searchQuery, setSearchQuery] = useState('');
+  // Filter templates by search
   const filteredTemplates = eventTemplates.filter(
-    (template) =>
+    template =>
       template.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       template.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
       template.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      template.tags.some((tag) =>
-        tag.toLowerCase().includes(searchQuery.toLowerCase()),
-      ),
+      template.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()))
   );
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <Fragment>
+      <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {filteredTemplates.map(template => (
+          <TemplateCard
+            key={template.id}
+            template={template}
+            isSelected={selectedTemplate === template.id}
+            onSelect={() => setSelectedTemplate(template.id)}
+          />
+        ))}
+      </div>
+    </Fragment>
+  );
+};
+
+// Placeholder Step 2 and Step 3 (can replace later with real components)
+const StepTwo = () => <div className="text-gray-500">Step 2 - Event Details (Coming soon...)</div>;
+const StepThree = () => (
+  <div className="text-gray-500">Step 3 - Final Confirmation (Coming soon...)</div>
+);
+
+const SelectTemplate = () => {
+  const [selectedTemplate, setSelectedTemplate] = useState<string | null>(null);
+  const [step, setStep] = useState(0);
+
+  const steps = [
+    {
+      label: 'Select Template',
+      content: (
+        <StepOne selectedTemplate={selectedTemplate} setSelectedTemplate={setSelectedTemplate} />
+      ),
+    },
+    { label: 'Event Details', content: <StepTwo /> },
+    { label: 'Confirmation', content: <StepThree /> },
+  ];
+
+  const nextStep = () => {
+    if (step < steps.length - 1) setStep(step + 1);
+  };
+
+  const prevStep = () => {
+    if (step > 0) setStep(step - 1);
+  };
+
+  return (
+    <div className="min-h-screen flex flex-col p-5">
       <main className="flex-grow container mx-auto px-6 py-12">
         <h1 className="text-3xl font-bold mb-3">Create New Event</h1>
-        <p className="text-gray-600 mb-12">
-          Explore and select your go to template
-        </p>
+        <p className="text-gray-600 mb-12">Explore and select your go to template</p>
 
-        <div className="bg-white rounded-xl shadow-sm p-8 mb-12">
+        <div className="bg-white rounded-xl shadow-sm p-6 mb-12">
           <div className="flex flex-col md:flex-row gap-6 justify-between mb-6">
             <div>
               <div className="text-sm font-medium text-peach mb-2">
-                Step 1 of 3
+                Step {step + 1} of {steps.length}
               </div>
-              <h2 className="text-xl font-medium">Select Template</h2>
-              <p className="text-sm text-gray-600">
-                choose your favorite template
-              </p>
+              <h2 className="text-xl font-medium">{steps[step].label}</h2>
+              <p className="text-sm text-gray-600">Fill out this step to continue</p>
             </div>
-
-            <StepIndicator step={1} total={3} />
-
-            <div className="flex items-center">
-              <Link href="/create-event/details">
+            <div className="flex gap-2 items-center">
+              {step > 0 && (
+                <AnimatedButton
+                  title="Back"
+                  onClick={prevStep}
+                  containerClassName="bg-gray-200 text-gray-700 hover:bg-gray-300"
+                />
+              )}
+              {step < steps.length - 1 && (
                 <AnimatedButton
                   title="Next"
-                  disabled={!selectedTemplate}
+                  onClick={nextStep}
+                  disabled={step === 0 && !selectedTemplate}
                   containerClassName="bg-peach hover:bg-peach-dark text-white"
                 />
-              </Link>
+              )}
+              {step === steps.length - 1 && (
+                <AnimatedButton
+                  title="Submit"
+                  onClick={() => alert('Submit logic here')}
+                  containerClassName="bg-green-500 hover:bg-green-600 text-white"
+                />
+              )}
             </div>
           </div>
 
-          <div className="mb-8 relative">
-            <Search
-              className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
-              size={18}
-            />
-            <input
-              type="text"
-              placeholder="Find an event ..."
-              className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-peach/50"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {filteredTemplates.map((template) => (
-              <div
-                key={template.id}
-                className={`border rounded-xl overflow-hidden cursor-pointer transition-all ${
-                  selectedTemplate === template.id
-                    ? "border-peach ring-2 ring-peach/30"
-                    : "border-gray-200 hover:border-peach/50"
-                }`}
-                onClick={() => setSelectedTemplate(template.id)}
-              >
-                <div className="h-[260px] overflow-hidden">
-                  <img
-                    src={template.imageUrl}
-                    alt={template.title}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="p-4">
-                  <h3 className="font-medium mb-1">{template.title}</h3>
-                  <p className="text-sm text-gray-600">
-                    {template.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
+          {steps[step].content}
         </div>
       </main>
     </div>

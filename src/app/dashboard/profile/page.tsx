@@ -1,4 +1,6 @@
-import React from "react";
+'use client';
+
+import React from 'react';
 
 // a page to show user profile
 function ProfilePage() {

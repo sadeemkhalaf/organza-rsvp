@@ -1,29 +1,23 @@
-export const runtime = "nodejs"; // مهم إذا رح تستخدميه في API Route
-
 // import mongoose from "mongoose";
 
-const MONGODB_URI = process.env.MONGODB_URI || "";
+// const MONGODB_URI = process.env.MONGODB_CONNECTION_STRING || "";
 
-if (!MONGODB_URI) {
-  console.warn(
-    "⚠️ Warning: MONGODB_URI is not defined. Database will not connect.",
-  );
-}
+// if (!MONGODB_URI) {
+//   throw new Error(
+//     "Please define the MONGODB_URI environment variable inside .env.local",
+//   );
+// }
 
-let cached = global.mongoose;
+// let cached = global.mongoose;
 
-if (!cached) {
-  cached = global.mongoose = { conn: null, promise: null };
-}
+// if (!cached) {
+//   cached = global.mongoose = { conn: null, promise: null };
+// }
 
-// TODO: work on this later
 // async function dbConnect() {
-//   if (!MONGODB_URI) {
-//     throw new Error("Missing MONGODB_URI, can't connect to database.");
+//   if (cached.conn) {
+//     return cached.conn;
 //   }
-
-//   if (cached.conn) return cached.conn;
-
 //   if (!cached.promise) {
 //     const opts = {
 //       bufferCommands: false,
@@ -31,18 +25,16 @@ if (!cached) {
 //       useNewUrlParser: true,
 //       useUnifiedTopology: true,
 //     };
-
 //     cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
-//       console.log("✅ DB connected successfully");
+//       console.log("Db connected, yay!");
 //       return mongoose;
 //     });
 //   }
-
 //   try {
 //     cached.conn = await cached.promise;
-//   } catch (err) {
+//   } catch (e) {
 //     cached.promise = null;
-//     throw err;
+//     throw e;
 //   }
 
 //   return cached.conn;
@@ -51,6 +43,6 @@ if (!cached) {
 // export default dbConnect;
 
 export default async function dbConnect() {
-  console.log("dbConnect called, but not implemented yet.");
+  console.log('dbConnect called, but not implemented yet.');
   return null;
 }
