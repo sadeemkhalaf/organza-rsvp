@@ -9,24 +9,46 @@ import { useRouter } from 'next/navigation';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [authToken, setAuthToken] = useState<string | null>(null);
+  const [userEmail, setUserEmail] = useState<string | null>(null);
   const route = useRouter();
 
+  // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 50);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Safely access localStorage on client only
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const token = localStorage.getItem('authToken');
+      const userData = localStorage.getItem('user');
+      setAuthToken(token);
+      if (userData) {
+        try {
+          const parsed = JSON.parse(userData);
+          setUserEmail(parsed.email);
+        } catch {
+          setUserEmail(null);
+        }
+      }
+    }
+  }, []);
+
   const handleLogout = () => {
-    if (!!localStorage.getItem('authToken')) localStorage.removeItem('authToken');
-    else route.push('/login');
+    if (authToken) {
+      localStorage.removeItem('authToken');
+      localStorage.removeItem('user');
+      setAuthToken(null);
+      setUserEmail(null);
+      route.push('/login');
+    } else {
+      route.push('/login');
+    }
   };
 
   return (
@@ -42,20 +64,18 @@ const Navbar = () => {
         <Link href="/">
           <Image src={'/Logo.png'} className="h-16 w-auto" alt="organza" width={78} height={70} />
         </Link>
+
         <nav className="space-x-6 hidden md:flex">
           <Link href="/about">About us</Link>
           <Link href="/dashboard">Dashboard</Link>
           <Link href="/dashboard/profile">Profile</Link>
         </nav>
+
         <div className="grid md:grid-cols-2 md:items-center md:space-x-4">
-          {localStorage.getItem('user') && (
-            <p className="hidden md:block text-sm font-semibold">
-              {JSON.parse(localStorage.getItem('user')!)?.email}
-            </p>
-          )}
+          {userEmail && <p className="hidden md:block text-sm font-semibold">{userEmail}</p>}
           <AnimatedButton
             outlined
-            title={!!localStorage.getItem('authToken') ? 'Logout' : 'Login'}
+            title={authToken ? 'Logout' : 'Login'}
             size="sm"
             onClick={handleLogout}
           />
