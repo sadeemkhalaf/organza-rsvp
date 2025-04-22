@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export function middleware(req: NextRequest) {
   const token = req.cookies.get("token")?.value; // Get token from cookies
+  
   const loginPage = "/login";
 
   const protectedRoutes = ["/dashboard", "/profile", "/events"]; // Define protected routes

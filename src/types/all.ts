@@ -33,7 +33,7 @@ export interface Event {
   formDescription?: string;
   status: "draft" | "active" | "completed";
   capacity?: number;
-  guests: Guest[];
+  guests?: Guest[];
 }
 
 export interface User {
