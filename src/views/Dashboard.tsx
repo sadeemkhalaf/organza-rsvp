@@ -11,9 +11,6 @@ const Dashboard = () => {
 
   const {eventList} = useDashbaord();
 
-  console.log("eventList: ", eventList);
-  
-
   return (
     <div className="w-full max-w-6xl mx-auto p-6 mb-6">
       <div className="w-full flex items-start flex-col sm:flex-row justify-between mb-6 flex-1 px-2 md:px-4">
@@ -46,7 +43,7 @@ const Dashboard = () => {
 
       {/* Event Cards Grid */}
       <div className="flex flex-wrap flex-1">
-        {([{ eventId: "empty" }] as EventDetailsFS[]).map((event) =>
+        {([{ eventId: "empty" }, ...eventList] as EventDetailsFS[]).map((event) =>
           event.eventId !== "empty" ? (
             <EventCard key={event.eventId} event={event} />
           ) : (

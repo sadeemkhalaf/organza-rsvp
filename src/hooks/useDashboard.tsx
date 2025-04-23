@@ -13,7 +13,6 @@ const useDashbaord = () => {
             try {
                 const response = await axiosInstance.get('/events');
                 const data = await response.data;
-                console.log("Events: ", data);
                 setEventList(data);
             }
             catch (error) {

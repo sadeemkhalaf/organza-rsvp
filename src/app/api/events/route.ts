@@ -23,8 +23,6 @@ export async function GET(req: NextRequest) {
         id: doc.id,
         ...doc.data(),
       }));
-      console.log("Events: ", events);
-
       return NextResponse.json(events, { status: 200 });
     } catch (error) {
       return NextResponse.json(
