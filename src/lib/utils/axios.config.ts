@@ -22,19 +22,25 @@ const processQueue = (error: any, token: string | null = null) => {
   failedQueue = [];
 };
 
+// Request interceptor to attach the token
 axiosInstance.interceptors.request.use(
-  async (config) => {
-    const user = auth.currentUser;
-    console.log('User:', user);
-    
-    if (user) {
-      const token = await user.getIdToken();
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-  },
-  (error) => Promise.reject(error)
-);
+    async (config) => {
+      const user = auth.currentUser;
+  
+      if (user) {
+        const token = await user.getIdToken(true); // 👈 forces refresh if expired
+        config.headers.Authorization = `Bearer ${token}`;
+      } else {
+        const token = localStorage.getItem('authToken');
+        if (token) {
+          config.headers.Authorization = `Bearer ${token}`;
+        }
+      }
+  
+      return config;
+    },
+    (error) => Promise.reject(error)
+  );
 
 axiosInstance.interceptors.response.use(
   (response) => response,

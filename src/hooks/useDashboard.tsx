@@ -11,7 +11,7 @@ const useDashbaord = () => {
         async () => {
             setIsLoading(true);
             try {
-                const response = await axiosInstance.get('/api/events');
+                const response = await axiosInstance.get('/events');
                 const data = await response.data;
                 console.log("Events: ", data);
                 setEventList(data);
