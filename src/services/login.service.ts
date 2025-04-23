@@ -32,6 +32,8 @@ export const loginUserWithFirebaseEmailPassword = async (
       uid: user.uid,
       email: user.email,
       token: token,
+      user,
+      userCredential
     };
   } catch (error) {
     throw new Error(

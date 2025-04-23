@@ -57,7 +57,7 @@ axiosInstance.interceptors.response.use(
         isRefreshing = true;
 
         return new Promise((resolve, reject) => {
-          onAuthStateChanged(auth, async (user) => {
+          onAuthStateChanged(auth, async (user) => {            
             if (user) {
               try {
                 const newToken = await user.getIdToken(true);
