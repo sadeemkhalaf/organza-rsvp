@@ -1,45 +1,12 @@
-"use client";
+'use client';
 
-// import TemplateRenderer from '@/features/EventTemplate/components/TemplateRenderer';
-// import { Guest } from '@/types/event';
-import { useEffect } from "react";
-// import RSVPForm from './rsvp';
+import EventTemplatePageView from '@/views/templates/wedding/WeddingTemplate';
 
-const EventGuestPage =
-  (/*{ params }: { params: { eventId: string; guestId: string } }*/) => {
-    // const { eventId, guestId } = params;
+import React from 'react';
 
-    // const [eventDetails, setEventDetails] = useState<Event | null>(null);
-    // const [guestDetails, setGuestDetails] = useState<Guest | null>(null);
-    // const [loading, setLoading] = useState(true);
+// a page to show the dashboard with all the events
+function EventTemplatePage() {
+  return <EventTemplatePageView />;
+}
 
-    useEffect(() => {
-      // (async () => {
-      //   try {
-      //     setLoading(true);
-      //     const { event, guest } = await fetchEventDetails(eventId, guestId);
-      //     setEventDetails(event);
-      //     setGuestDetails(guest);
-      //   } catch (error) {
-      //     console.error('Failed to fetch event or guest details:', error);
-      //   } finally {
-      //     setLoading(false);
-      //   }
-      // })();
-    }, []);
-
-    // if (loading) return <p>Loading...</p>;
-    // if (!eventDetails || !guestDetails) return <p>Event or guest not found</p>;
-
-    return (
-      <div className="container mx-auto px-4 py-8">
-        {/* Template Renderer */}
-        {/* <TemplateRenderer eventDetails={eventDetails} guestDetails={guestDetails} /> */}
-
-        {/* RSVP Form */}
-        {/* <RSVPForm guestId={guestId} eventId={eventId} /> */}
-      </div>
-    );
-  };
-
-export default EventGuestPage;
+export default EventTemplatePage;

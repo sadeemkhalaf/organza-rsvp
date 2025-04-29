@@ -3,11 +3,11 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { AnimatedButton } from '../atoms';
 import { useRouter } from 'next/navigation';
 
-const Navbar = () => {
+const Navbar: FC<{ onlyShowLogo: boolean }> = ({ onlyShowLogo = false }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [authToken, setAuthToken] = useState<string | null>(null);
   const [userEmail, setUserEmail] = useState<string | null>(null);
@@ -24,7 +24,7 @@ const Navbar = () => {
 
   // Safely access localStorage on client only
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    if (!onlyShowLogo && typeof window !== 'undefined') {
       const token = localStorage.getItem('authToken');
       const userData = localStorage.getItem('user');
       setAuthToken(token);
@@ -65,21 +65,25 @@ const Navbar = () => {
           <Image src={'/Logo.png'} className="h-16 w-auto" alt="organza" width={78} height={70} />
         </Link>
 
-        <nav className="space-x-6 hidden md:flex">
-          <Link href="/about">About us</Link>
-          <Link href="/dashboard">Dashboard</Link>
-          <Link href="/dashboard/profile">Profile</Link>
-        </nav>
+        {!onlyShowLogo && authToken && (
+          <nav className="space-x-6 hidden md:flex">
+            <Link href="/about">About us</Link>
+            <Link href="/dashboard">Dashboard</Link>
+            <Link href="/dashboard/profile">Profile</Link>
+          </nav>
+        )}
 
-        <div className="grid md:grid-cols-2 md:items-center md:space-x-4">
-          {userEmail && <p className="hidden md:block text-sm font-semibold">{userEmail}</p>}
-          <AnimatedButton
-            outlined
-            title={authToken ? 'Logout' : 'Login'}
-            size="sm"
-            onClick={handleLogout}
-          />
-        </div>
+        {!onlyShowLogo && (
+          <div className="grid md:grid-cols-2 md:items-center md:space-x-4">
+            {userEmail && <p className="hidden md:block text-sm font-semibold">{userEmail}</p>}
+            <AnimatedButton
+              outlined
+              title={authToken ? 'Logout' : 'Login'}
+              size="sm"
+              onClick={handleLogout}
+            />
+          </div>
+        )}
       </div>
     </motion.header>
   );

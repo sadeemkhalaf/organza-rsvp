@@ -1,13 +1,16 @@
+'use client';
+
 import React from "react";
 import EventCard from "@/components/organizms/eventCard/EventCard.component";
-import { IEvent } from "@/types/event";
 import Link from "next/link";
+import useDashbaord from "@/hooks/useDashboard";
+import { EventDetailsFS } from "@/models/Event.model";
 
-interface DashboardProps {
-  events: IEvent[];
-}
 
-const Dashboard: React.FC<DashboardProps> = ({ events }) => {
+const Dashboard = () => {
+
+  const {eventList} = useDashbaord();
+
   return (
     <div className="w-full max-w-6xl mx-auto p-6 mb-6">
       <div className="w-full flex items-start flex-col sm:flex-row justify-between mb-6 flex-1 px-2 md:px-4">
@@ -40,11 +43,11 @@ const Dashboard: React.FC<DashboardProps> = ({ events }) => {
 
       {/* Event Cards Grid */}
       <div className="flex flex-wrap flex-1">
-        {([{ id: "empty" }, ...events] as IEvent[]).map((event) =>
-          event.id !== "empty" ? (
-            <EventCard key={event.id} event={event} />
+        {([{ eventId: "empty" }, ...eventList] as EventDetailsFS[]).map((event) =>
+          event.eventId !== "empty" ? (
+            <EventCard key={event.eventId} event={event} />
           ) : (
-            <EventCard isEmpty key={event.id} />
+            <EventCard isEmpty key={event.eventId} />
           ),
         )}
         {/* Placeholder for creating a new event */}

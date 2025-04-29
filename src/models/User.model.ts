@@ -8,6 +8,16 @@ export enum UserPersmission {
   all_loggedin_users = "all-loggedin-users",
 }
 
+export interface IGuest {
+  id?: string;
+  fullname?: string;
+  seatsCount?: number;
+  mobileNumber?: string;
+  rsvpResponse?: "yes" | "no" | boolean;
+  // invitedBy?: 'G' | 'B'; // groom, bride
+}
+   
+
 export interface IUser extends Document {
   name: string;
   email: string;
