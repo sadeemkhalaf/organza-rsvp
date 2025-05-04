@@ -1,36 +1,109 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎉 Organza RSVP — Elegant Event Invitations & Guest Management
 
-## Getting Started
+Organza RSVP is a beautifully crafted web application for managing event invitations, guest RSVPs, and event customization. It empowers users to personalize digital invitations, track guest responses in real-time, and deliver a seamless experience to both hosts and attendees.
 
-First, run the development server:
+> Built with [Next.js 15](https://nextjs.org), Firebase, TypeScript, Tailwind CSS, and Framer Motion.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## 🚀 Features
+
+- 📋 **Multi-step Event Creation**: Select from ready-to-use templates and personalize them step-by-step.
+- 📧 **Smart Guest Management**: Invite guests, collect RSVP responses, and track attendance.
+- 🔐 **Firebase Authentication**: Secure login and token-based API access using Firebase Auth.
+- 🌍 **Public RSVP Pages**: Guests can access event pages without authentication.
+- 🎨 **Responsive Templates**: Built-in templates that look great on mobile and desktop.
+- 🌐 **Multi-layout Support**: Distinct layouts for dashboard pages and public RSVP routes.
+- 💡 **Real-time Firestore Integration**: All data is live and instantly available.
+- 📸 **Photographer Recommendations**: Showcase your event with professional visuals.
+- ✨ **Smooth Animations**: Using Framer Motion for a polished, interactive experience.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js 15 (App Router)
+- **Auth**: Firebase Authentication
+- **Database**: Firebase Firestore
+- **Design**: Tailwind CSS, Framer Motion
+- **Icons**: Lucide React
+- **Image Optimization**: Next/Image
+- **State Management**: React Hooks + local state
+- **Hosting**: Vercel
+
+---
+
+## 🧩 Project Structure
+
+```
+src/
+├── app/
+│   ├── api/                 # Route Handlers (App Router)
+│   ├── dashboard/           # Authenticated user dashboard
+│   ├── [event-title]/...    # Public guest invitation pages
+│   └── layout.tsx           # Root layout (Header, Footer)
+├── components/              # Shared UI components
+│   ├── atoms/               # Buttons, icons, badges
+│   ├── forms/               # Input forms & RSVP handling
+│   └── templates/           # Event templates
+├── hooks/                   # Custom React hooks
+├── lib/                     # Firebase config, Axios setup
+└── styles/                  # Tailwind and global CSS
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🔐 Authentication & API Access
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- API routes use **Firebase Auth tokens** for access control.
+- Guests access public event pages via dynamic routes (`/[event-title]/[eventId]/[guestId]`).
+- Axios instance with interceptors handles **token refreshing** and retries expired requests automatically.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🧪 Local Development
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+# Install dependencies
+pnpm install
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Run the development server
+pnpm dev
+```
 
-## Deploy on Vercel
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Setup `.env.local`:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+NEXT_PUBLIC_FIREBASE_API_KEY=your_key
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
+```
+
+---
+
+## 🌍 Deployment
+
+Organza RSVP is fully optimized for deployment on [Vercel](https://vercel.com).
+
+```bash
+pnpm build
+pnpm start
+```
+
+Make sure your environment variables are set in the Vercel dashboard for production.
+
+---
+
+## 🧠 Future Ideas
+
+- 🎯 Event analytics dashboard
+- 📬 Email and SMS integration for invites
+- 🖼️ Drag-and-drop template builder
+- 🧾 Printable guest lists and QR check-ins
+
+---
