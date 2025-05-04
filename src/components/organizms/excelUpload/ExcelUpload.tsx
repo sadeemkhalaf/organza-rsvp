@@ -4,7 +4,7 @@ import { FileUpIcon, TrashIcon } from "lucide-react";
 import { FC, useState } from "react";
 import { read, utils } from "xlsx";
 
-const ExcelUpload: FC<{ sheetData: any[], setSheetData: React.Dispatch<any[]>, setRefresh: React.Dispatch<boolean> }> = ({ sheetData, setSheetData, setRefresh }) => {
+const ExcelUpload: FC<{ sheetData: any[], setSheetData: React.Dispatch<any[]>, setRefresh: React.Dispatch<boolean> }> = ({ setSheetData, setRefresh }) => {
     const [file, setFile] = useState(null);
     const [selected, setSelected] = useState(false);
 

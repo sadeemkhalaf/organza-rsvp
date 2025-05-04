@@ -11,7 +11,7 @@ import { FaCalendarAlt, FaMapMarkerAlt } from 'react-icons/fa';
 const EventDetails = () => {
   const { id } = useParams();
   
-  const { error, eventDetails, isLoading } = useEventDetails({ eventId: id ? (id as string) : '' });
+  const { eventDetails } = useEventDetails({ eventId: id ? (id as string) : '' });
 
   return (
     <div className="max-w-6xl mx-auto pb-6 p-6">

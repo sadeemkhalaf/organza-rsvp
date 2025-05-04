@@ -23,12 +23,12 @@ export const xlsToJson = async () => {
 };
 
 export const writeToStore = async (data: Guest[] | any[]) => {
-  data.map((guestItem) => {
+  data.map((/*guestItem*/) => {
     // guestCollection.doc().set(guestItem);
   });
 };
 
-export const addNewRecord = (guestItem: Guest) => {
+export const addNewRecord = (/*guestItem: Guest*/) => {
   // guestCollection.doc().set(guestItem);
 };
 

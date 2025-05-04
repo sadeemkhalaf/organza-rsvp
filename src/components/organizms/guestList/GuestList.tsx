@@ -16,10 +16,10 @@ const ActionButton = ({ icon, title, onClick }: { icon: React.ReactElement, titl
 
 const GuestList: React.FC = () => {
   const tableId = useId();
-  const [refresh, setRefresh] = useState<boolean>(false);
-  const [showInvitationModal, setShowInvitationModal] = useState(false);
+  const [/*refresh*/, setRefresh] = useState<boolean>(false);
+  const [/*showInvitationModal*/, setShowInvitationModal] = useState(false);
   const [sheetData, setSheetData] = useState<any[]>([]);
-  const [showModal, setShowModal] = useState(false);
+  const [/*showModal*/, setShowModal] = useState(false);
 
   return (
     <div className="bg-white shadow-md rounded-lg p-6 mb-20 overflow-x-auto">
