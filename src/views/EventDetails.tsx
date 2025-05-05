@@ -8,6 +8,7 @@ import { useParams } from 'next/navigation';
 import React from 'react';
 import { FaCalendarAlt, FaMapMarkerAlt } from 'react-icons/fa';
 
+// each event will initiate a first guest for preview template, the guest shall not be counted and the status will be updated for preview only 
 const EventDetails = () => {
   const { id } = useParams();
   
