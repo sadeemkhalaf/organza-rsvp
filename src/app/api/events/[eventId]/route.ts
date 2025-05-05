@@ -1,15 +1,19 @@
+// File: src/app/api/events/[eventId]/route.ts
+
 import { NextRequest, NextResponse } from 'next/server';
 import { collection, doc, getDoc } from 'firebase/firestore';
 import { db } from '../../../../../firebaseConfig';
 
+// GET method to fetch a single event by eventId
 export async function GET(
-  req: NextRequest,
-  context: { params: { eventId: string } }
+  _req: NextRequest,
+  { params }: { params: Promise<{ eventId: string }> }
 ) {
-  const { eventId } = await context.params;
-  
+
+  const { eventId } = await params;
+
   if (!eventId) {
-    return NextResponse.json({ error: "Missing parameters" }, { status: 400 });
+    return NextResponse.json({ error: 'Missing eventId' }, { status: 400 });
   }
 
   try {
@@ -17,14 +21,15 @@ export async function GET(
     const snapshot = await getDoc(eventRef);
 
     if (!snapshot.exists()) {
-      return NextResponse.json({ error: "Event not found" }, { status: 404 });
+      return NextResponse.json({ error: 'Event not found' }, { status: 404 });
     }
 
     return NextResponse.json(snapshot.data(), { status: 200 });
-  } catch (error) {
-    return NextResponse.json({ error: (error as any).message }, { status: 500 });
+  } catch (error: any) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
+
 
 // export async function PUT(
 //   req: NextRequest,

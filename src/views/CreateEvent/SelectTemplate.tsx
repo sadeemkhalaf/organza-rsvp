@@ -3,6 +3,7 @@ import { FC, Fragment, useState } from 'react';
 import { AnimatedButton } from '@/components';
 import { eventTemplates } from '@/mock/data';
 import { SearchBar, TemplateCard } from './components';
+import { ArrowLeft } from 'lucide-react';
 
 // Step 1: Template selection
 const StepOne: FC<{
@@ -68,7 +69,10 @@ const SelectTemplate = () => {
   return (
     <div className="min-h-screen flex flex-col p-5">
       <main className="flex-grow container mx-auto px-6 py-12">
-        <h1 className="text-3xl font-bold mb-3">Create New Event</h1>
+        <div className='flex items-baseline flex-row gap-4'>
+          <ArrowLeft size={24} className="mr-2" />
+          <h1 className="text-3xl font-bold mb-3">Create New Event</h1>
+        </div>
         <p className="text-gray-600 mb-12">Explore and select your go to template</p>
 
         <div className="bg-white rounded-xl shadow-sm p-6 mb-12">
@@ -85,6 +89,7 @@ const SelectTemplate = () => {
                 <AnimatedButton
                   title="Back"
                   onClick={prevStep}
+                  size={'sm'}
                   containerClassName="bg-gray-200 text-gray-700 hover:bg-gray-300"
                 />
               )}
@@ -92,6 +97,7 @@ const SelectTemplate = () => {
                 <AnimatedButton
                   title="Next"
                   onClick={nextStep}
+                  size={'sm'}
                   disabled={step === 0 && !selectedTemplate}
                   containerClassName="bg-peach hover:bg-peach-dark text-white"
                 />
@@ -99,6 +105,7 @@ const SelectTemplate = () => {
               {step === steps.length - 1 && (
                 <AnimatedButton
                   title="Submit"
+                  size={'sm'}
                   onClick={() => alert('Submit logic here')}
                   containerClassName="bg-green-500 hover:bg-green-600 text-white"
                 />

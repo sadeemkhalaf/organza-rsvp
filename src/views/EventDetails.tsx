@@ -21,7 +21,8 @@ const EventDetails = () => {
         <div className="flex text-gray-600 mt-2 flex-col md:flex-row items-start">
           <div className="flex flex-row items-baseline mx-3">
             <FaCalendarAlt className="mx-2" />
-            {new Date(eventDetails?.date?.seconds * 1000).toLocaleString()}
+            {/* @ts-expect-error: ignore data type for now */}
+            {eventDetails?.date ? new Date(eventDetails?.date?.seconds * 1000).toLocaleString() : ''}
           </div>
           <div className="flex flex-row items-baseline mx-3">
             <FaMapMarkerAlt className="ml-4 mx-2" />

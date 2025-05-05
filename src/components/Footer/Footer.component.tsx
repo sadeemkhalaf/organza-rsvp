@@ -31,23 +31,17 @@ const Footer = () => {
         </div>
         <div className="space-y-2 flex flex-col items-start">
           <p className="font-semibold">Follow Us</p>
-          <div className="flex space-x-3">
+          <div className="flex space-x-2">
             <Image
               alt="instagram"
-              width={18}
-              height={20}
+              width={24}
+              height={18}
               src={"/icons/instagram.png"}
             />
             <Image
-              alt="pintrest"
-              width={18}
-              height={20}
-              src={"/icons/pintrest.png"}
-            />
-            <Image
               alt="facebook"
-              width={18}
-              height={20}
+              width={24}
+              height={18}
               src={"/icons/facebook.png"}
             />
           </div>
