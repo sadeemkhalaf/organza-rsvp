@@ -39,12 +39,22 @@ const Navbar: FC<{ onlyShowLogo: boolean }> = ({ onlyShowLogo = false }) => {
     }
   }, []);
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     if (authToken) {
       localStorage.removeItem('authToken');
       localStorage.removeItem('user');
       setAuthToken(null);
       setUserEmail(null);
+      const response = await fetch("/api/auth/logout", {
+        // ✅ Correct API URL
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Logout failed");
+      }
       route.push('/login');
     } else {
       route.push('/login');

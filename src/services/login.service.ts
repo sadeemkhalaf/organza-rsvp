@@ -1,6 +1,6 @@
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { fbApp } from "../../firebaseConfig";
-import { cookies } from "next/headers"; // Import Next.js cookies API
+import { cookies } from "next/headers"; 
 
 const auth = getAuth(fbApp);
 
@@ -38,6 +38,23 @@ export const loginUserWithFirebaseEmailPassword = async (
   } catch (error) {
     throw new Error(
       (error as any)?.message || "An error occurred while logging in",
+    );
+  }
+};
+
+export const logoutUserWithFirebas = async () => {
+  try {
+    await signOut(auth);
+    // remove the token from the secure cookie
+    (
+      await // Store the token in a secure cookie
+      cookies()
+    ).delete("token");
+
+    return "successfully logged out";
+  } catch (error) {
+    throw new Error(
+      (error as any)?.message || "An error occurred while logging out",
     );
   }
 };

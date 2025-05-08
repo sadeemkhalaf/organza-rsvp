@@ -1,26 +1,34 @@
-import React, { useId, useState } from 'react';
+import React, { useState } from 'react';
 import { GuestRow } from '@/components/atoms';
 import exportToExcel from '@/lib/utils/writeExcel';
 import { PlusCircleIcon, PencilIcon, FileDownIcon } from 'lucide-react';
 import ExcelUpload from '../excelUpload/ExcelUpload';
+import { IGuest } from '@/models/User.model';
 
-
-const ActionButton = ({ icon, title, onClick }: { icon: React.ReactElement, title: string, onClick?: React.MouseEventHandler<HTMLDivElement> | undefined }) => {
+const ActionButton = ({
+  icon,
+  title,
+  onClick,
+}: {
+  icon: React.ReactElement;
+  title: string;
+  onClick?: React.MouseEventHandler<HTMLDivElement> | undefined;
+}) => {
   return (
-      <div className='flex flex-row text-center gap-1 items-center cursor-pointer' onClick={onClick}>
-          {icon}
-          <div>{title}</div>
-      </div>
-  )
-}
+    <div className="flex flex-row text-center gap-1 items-center cursor-pointer" onClick={onClick}>
+      {icon}
+      <div>{title}</div>
+    </div>
+  );
+};
 
-const GuestList: React.FC = () => {
-  const tableId = useId();
-  const [/*refresh*/, setRefresh] = useState<boolean>(false);
-  const [/*showInvitationModal*/, setShowInvitationModal] = useState(false);
+const GuestList: React.FC<{ eventGuests: IGuest[] | undefined }> = ({ eventGuests = [] }) => {
+  const tableId = "guest-list-table";
+  const [, /*refresh*/ setRefresh] = useState<boolean>(false);
+  const [, /*showInvitationModal*/ setShowInvitationModal] = useState(false);
   const [sheetData, setSheetData] = useState<any[]>([]);
-  const [/*showModal*/, setShowModal] = useState(false);
-
+  const [, /*showModal*/ setShowModal] = useState(false);
+  
   return (
     <div className="bg-white shadow-md rounded-lg p-6 mb-20 overflow-x-auto">
       <h2 className="text-xl font-semibold mb-4">Guest List</h2>
@@ -52,13 +60,22 @@ const GuestList: React.FC = () => {
             <tr className="bg-gray-100">
               <th className="p-3 border border-gray-200 text-left">Name</th>
               <th className="p-3 border border-gray-200 text-left">Email</th>
-              <th className="p-3 border border-gray-200 text-left">Status</th>
+              <th className="p-3 border border-gray-200 text-left">Response</th>
               <th className="p-3 border border-gray-200 text-left">Actions</th>
             </tr>
           </thead>
           <tbody>
-            <GuestRow name="Sarah Johnson" email="sarahj@example.com" status="Confirmed" />
-            <GuestRow name="Michael Chen" email="m.chen@example.com" status="Pending" />
+            {eventGuests.map((guest) => (
+              <GuestRow
+                key={guest.id}
+                name={guest.fullName || ''}
+                email={guest.mobileNumber || ''}
+                status={guest.rsvpResponse!}
+              />
+            ))}
+            {/* Example static rows for demonstration */}
+            {/* <GuestRow name="Sarah Johnson" email="sarahj@example.com" status="Confirmed" />
+            <GuestRow name="Michael Chen" email="m.chen@example.com" status="Pending" /> */}
           </tbody>
         </table>
       </div>

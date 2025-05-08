@@ -1,9 +1,10 @@
+import { GuestResponse } from "@/models/enum";
 import React from "react";
 
 interface GuestRowProps {
   name: string;
   email: string;
-  status: string;
+  status: GuestResponse;
 }
 
 const GuestRow: React.FC<GuestRowProps> = ({ name, email, status }) => (
@@ -11,7 +12,7 @@ const GuestRow: React.FC<GuestRowProps> = ({ name, email, status }) => (
     <td className="p-3 border border-gray-200">{name}</td>
     <td className="p-3 border border-gray-200">{email}</td>
     <td
-      className={`p-3 border border-gray-200 ${status === "Confirmed" ? "text-green-600" : "text-yellow-600"}`}
+      className={`p-3 border border-gray-200 ${status === GuestResponse.ACCEPTED ? "text-green-600" : "text-yellow-600"}`}
     >
       {status}
     </td>

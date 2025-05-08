@@ -1,4 +1,5 @@
 import mongoose, { Schema, Document } from "mongoose";
+import { GuestResponse } from "./enum";
 
 export enum UserPersmission {
   user = "user",
@@ -10,10 +11,10 @@ export enum UserPersmission {
 
 export interface IGuest {
   id?: string;
-  fullname?: string;
+  fullName?: string;
   seatsCount?: number;
   mobileNumber?: string;
-  rsvpResponse?: "yes" | "no" | boolean;
+  rsvpResponse?: GuestResponse;
   // invitedBy?: 'G' | 'B'; // groom, bride
 }
    
