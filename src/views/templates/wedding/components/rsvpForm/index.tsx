@@ -45,7 +45,7 @@ export const RSVPFormContainer: React.FC<{ guestDetails?: IGuest; guestId?: stri
   
 
   return (
-    <div className="block p-6 w-full xl:w-1/3 lg:w-1/2 sm:w-3/4 rounded-lg">
+    <div className="block w-1/2 rounded-lg">
       <form className="flex flex-col justify-center">
       <div className="grid grid-rows-2 gap-2">
             <div className="form-group mb-6">
@@ -56,7 +56,7 @@ export const RSVPFormContainer: React.FC<{ guestDetails?: IGuest; guestId?: stri
                 type={'text'}
                 contentEditable={'false'}
                 disabled
-                defaultValue={guestDetails?.fullname || ''}
+                defaultValue={guestDetails?.fullName || ''}
               />
             </div>
             <div className="form-group mb-6">

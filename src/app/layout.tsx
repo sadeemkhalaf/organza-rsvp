@@ -23,18 +23,19 @@ export default function RootLayout({
 }>) {
   // const isAuthStack = typeof window !== 'undefined' && window.location.pathname === '/login';
   const pathname = usePathname();
-  const isAuthStack = pathname === '/login';
+  const isAuthStack = pathname === '/login' || pathname.includes('/event/');
+  const isEventTemplate = pathname.includes('/event/');
 
   return (
     <html lang="en">
       <body className={`${montserrat.className} antialiased`}>
         <div className="flex flex-col min-h-screen">
           {/* Top Navbar */}
-          <Navbar onlyShowLogo={isAuthStack} />
+          {!isEventTemplate && <Navbar onlyShowLogo={isAuthStack} />}
 
           {/* Main Content */}
           <main
-            className={`${!isAuthStack ? 'pt-32 -mb-16 flex-grow' : 'pt-0'} bg-gradient-to-br from-[#FFE5D9] via-[#E6E6FA] to-[#F5DEB3] `}
+            className={`${!isAuthStack ? 'pt-32 -mb-16 flex-grow' : 'pt-0'} ${isEventTemplate ? '' : 'bg-gradient-to-br from-[#FFE5D9] via-[#E6E6FA] to-[#F5DEB3]'} `}
           >
             {children}
           </main>

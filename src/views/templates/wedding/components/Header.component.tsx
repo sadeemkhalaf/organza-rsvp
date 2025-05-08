@@ -1,7 +1,7 @@
 import { Popover } from '@headlessui/react'
 import { Link } from "react-scroll/modules";
 import { FC, useEffect, useState } from 'react';
-import './../../../../app/styles/Home.module.css'
+// import './../../../../app/styles/Home.module.css'
 
 interface NavigationLinkProps {
     link: string;

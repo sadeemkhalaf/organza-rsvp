@@ -40,7 +40,7 @@ const EventDetails = () => {
               </Link>
             </div>
           </div>
-          <Link className="flex flex-row mx-3 items-center" href={`/${eventDetails?.title}/${eventDetails?.eventId}/guestTestId`}>
+          <Link className="flex flex-row mx-3 items-center" href={`/event/${eventDetails?.title}/${eventDetails?.eventId}/guestTestId`}>
           {/* /Users/sadeemahmad/Documents/GitHub/organza-rsvp/src/app/[event-title]/[eventId]/[guestId]/page.tsx */}
             <FiCompass className="ml-4 mx-2" />
             <span className="text-cyan-600 font-bold">Preview Template</span>
